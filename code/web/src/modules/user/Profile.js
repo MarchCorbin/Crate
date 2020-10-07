@@ -32,9 +32,35 @@ const Profile = (props) => (
 
     <Grid>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+
+				{/*
+				Add in JSX for the profile picture here
+				Maybe have a default image to start?
+				Add an edit button on the default image to change
+				*/}
+
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
 
+				{/*
+				Add in JSX for the personal description here
+				Input form, default text: 'add personal description'
+				*/}
+
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
+				{/*
+				Add an edit button here so the user can change the email address
+				*/}
+
+				{/*
+				Input form, default text: 'add shipping address'
+				If shipping address exists, button to edit
+				*/}
+
+				{
+				/* Link/Button to history?
+				Will show all items ever delivered
+				Add an icon on those that have been kept
+				*/}
 
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
