@@ -12,6 +12,16 @@ export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
 
+/*
+These are the action creators for user
+'dispatch' is called here instead of in the 'profileState/mapDispatchToProps' method that lives in the Profile component
+Action creator takes in a info/payload and returns and object with the type and info/payload
+dispatch takes in that object from the action creator and sends it to the reducer (that lives in state.js)
+
+The function that gets dispatched evaluates to an action
+*/
+
+
 // Actions
 
 // Set a user after login or using localStorage token
