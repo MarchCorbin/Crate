@@ -23,6 +23,9 @@ class Subscriptions extends PureComponent {
     return store.dispatch(getListByUser())
   }
 
+	/*
+	When a user clicks on the Subscriptions button, getListByUser is called upon component load
+	*/
   // Runs on client only
   componentDidMount() {
     this.props.getListByUser()
@@ -58,7 +61,7 @@ class Subscriptions extends PureComponent {
                         <div key={subscription.id} style={{ margin: '2em', float: 'left' }}>
                           <SubscriptionItem subscription={subscription} />
                         </div>
-                      ))
+											))
                     : <EmptyMessage message="You are not subscribed to any crates yet." />
             }
           </GridCell>
@@ -82,3 +85,21 @@ function subscriptionsState(state) {
 }
 
 export default connect(subscriptionsState, { getListByUser })(Subscriptions)
+
+/*
+The subscriptions are being retrieved from the store (line 83) which are mapped over to create multiple SubscriptionItem components (line 60-64) which takes in the subscription data as props, passed to Item.js:
+{
+	crate: {
+		description: "A monthly supply of trendy accessories for men"
+		id: 3
+		name: "Accessories for Men"
+	},
+	createdAt: "1602274333952",
+	id: 13,
+	user: {
+		email: "erin@test.com"
+		name: "erin"
+	}
+}
+
+*/
