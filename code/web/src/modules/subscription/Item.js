@@ -16,6 +16,10 @@ import { APP_URL } from '../../setup/config/env'
 import { messageShow, messageHide } from '../common/api/actions'
 import { remove, getListByUser } from '../subscription/api/actions'
 
+/*
+by using a PureComponent instead of a regular component, if there is no change to state or props, the component does not re-render, which improves performance.
+*/
+
 // Component
 class Item extends PureComponent {
 
@@ -115,3 +119,39 @@ function itemState(state) {
 }
 
 export default connect(itemState, { remove, getListByUser, messageShow, messageHide })(withRouter(Item))
+
+
+/*
+Will need to add a date that the next delivery for each subscription will be to the card and a button to edit that date
+
+
+current props.subscription look like this:
+and is passed from Subscription
+{
+	crate: {
+		description: "A monthly supply of trendy accessories for men"
+		id: 3
+		name: "Accessories for Men"
+	},
+	createdAt: "1602274333952",
+	id: 13,
+	user: {
+		email: "erin@test.com"
+		name: "erin"
+	}
+}
+
+current props.user look like this:
+and is retrieved from the store in itemState function
+user: {
+	details: {
+		email: "erin@test.com",
+		name: "erin"
+		role: null
+	},
+	error: null,
+	isAuthenticated: true,
+	isLoading: false
+}
+
+*/
