@@ -92,6 +92,7 @@ function profileState(state) {
 
 export default connect(profileState, { logout })(Profile)
 /*
+'wraps our component and gives this component access to the store'
 The connect method is what provides the props of 'user' to the Profile component. In this case, profileState (mapStateToProps) is retrieving the user information from the store. MapDispatchToProps is the { logout } we see, which takes data from our component to the reducer (which lives in state.js) when logout is called.
 
 
