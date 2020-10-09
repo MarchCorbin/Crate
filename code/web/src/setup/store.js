@@ -19,6 +19,9 @@ const appReducer = combineReducers({
   ...subscription,
   ...crate
 })
+/*
+^^^ the reason the ... is used with product, subscription and crate is because there are multiple different reducers in those files, where as in common and user there is only a single reducer.
+*/
 
 // Root Reducer
 export const rootReducer = (state, action) => {
@@ -37,6 +40,10 @@ if (typeof window !== 'undefined') {
 }
 
 // Store
+/*
+this is where the store is created
+INIT is called upon loading the site
+*/
 export const store = createStore(
   rootReducer,
   initialState,
