@@ -28,6 +28,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
 
+		// state is used here because this needs to be a controlled form, rather than using the store
     this.state = {
       user: {
         email: '',
