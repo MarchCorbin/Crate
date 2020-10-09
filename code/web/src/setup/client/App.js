@@ -23,3 +23,8 @@ const App = () => (
 )
 
 export default App
+
+/*
+Line 14 Object.values is getting all of the files in routes (web/src/setup/routes) and iterating over them
+RoutePrivate is used for the pages that there needs to be some sort of credentials verified. if they are not, it will redirect to the login page
+*/
