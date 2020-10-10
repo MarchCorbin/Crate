@@ -22,10 +22,12 @@ class Subscriptions extends PureComponent {
   static fetchData({ store }) {
     return store.dispatch(getListByUser())
   }
+  // this is retrieving the functionality to get the users personaol list of subscriptions from the store
 
   // Runs on client only
   componentDidMount() {
     this.props.getListByUser()
+    // upon page load the list of subscriptions will be retreived and displayed on the page
   }
 
   render() {
@@ -61,6 +63,7 @@ class Subscriptions extends PureComponent {
                       ))
                     : <EmptyMessage message="You are not subscribed to any crates yet." />
             }
+            {/* nested ternary making it so if the page is loading it will render the loading component otherwise it will check for the length of the users subscriptions and if there is content it will map out the items using the SubscriptionItem component otherwise it will give a generic no subscriptions description */}
           </GridCell>
         </Grid>
       </div>
@@ -79,6 +82,8 @@ function subscriptionsState(state) {
   return {
     subscriptions: state.subscriptionsByUser
   }
+  // this is defining the state within the current commponent
 }
 
 export default connect(subscriptionsState, { getListByUser })(Subscriptions)
+// this export is allowing the use of the getlistbyuser function to be deployed within the subscriptions component

@@ -19,6 +19,7 @@ export default (state = userInitialState, action) => {
         isAuthenticated: !isEmpty(action.user),
         details: action.user,
       }
+      // acts as a case for setting the user change the state isauthenticated and details
 
     case LOGIN_REQUEST:
       return {
@@ -26,6 +27,7 @@ export default (state = userInitialState, action) => {
         error: null,
         isLoading: action.isLoading
       }
+      // sets the case for a login request changing the error state and isloading
 
     case LOGIN_RESPONSE:
       return {
@@ -33,6 +35,7 @@ export default (state = userInitialState, action) => {
         error: action.error,
         isLoading: false
       }
+      // sets the case for a login response 
 
     case LOGOUT:
       return {
@@ -42,6 +45,7 @@ export default (state = userInitialState, action) => {
         isAuthenticated: false,
         details: null
       }
+      // sets the case for logging out sets the state for error, isloading,isauthenticated and details back to null or false 
 
     default:
       return state

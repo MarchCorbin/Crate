@@ -41,31 +41,36 @@ class Login extends Component {
   onChange = (event) => {
     let user = this.state.user
     user[event.target.name] = event.target.value
+    // Onchange the user email and password are updated
 
     this.setState({
       user
     })
+    // sets the state to change upon button press or change
   }
 
   onSubmit = (event) => {
     event.preventDefault()
-
+// prevents the page from refreshing
     this.props.messageShow('Logging in, please wait...')
-
+// Conidtionally renders the message to the user
     this.props.login(this.state.user)
+    // sends the user data up to the store to match or reject the credentials
       .then(response => {
         if (this.props.user.error && this.props.user.error.length > 0) {
           this.props.messageShow(this.props.user.error)
-
+// if the credentials are invalid then the user will receive an invalid login message for 5 seconds
           window.setTimeout(() => {
             this.props.messageHide()
           }, 5000)
         } else {
           this.props.messageHide()
+          // if the login is valid then the messagehide function will fire
         }
       })
       .catch(error => {
         this.props.messageShow(this.props.user.error)
+        // if an error occurs retrieving the credentials the user will receive an error message.
 
         window.setTimeout(() => {
           this.props.messageHide()
@@ -113,6 +118,7 @@ class Login extends Component {
 
           {/* Login Form */}
           <form onSubmit={this.onSubmit}>
+            {/* Form wired up to fire the onsubmit function when the user presses the submit button */}
             <div style={{ width: '25em', margin: '0 auto' }}>
               {/* Email */}
               <Input
@@ -125,6 +131,7 @@ class Login extends Component {
                 onChange={this.onChange}
                 style={{ marginTop: '1em' }}
               />
+              {/* the input holds the value of the state of the user email object it is also wired up to the onchange function above so that the user can change this value */}
 
               {/* Password */}
               <Input
@@ -137,18 +144,21 @@ class Login extends Component {
                 onChange={this.onChange}
                 style={{ marginTop: '1em' }}
               />
+              {/* this input is wired up to also use the same onchange function its value is also set to the value of the user password object */}
             </div>
 
             <div style={{ marginTop: '2em' }}>
               {/* Signup link */}
               <Link to={userRoutes.signup.path}>
                 <Button type="button" style={{ marginRight: '0.5em' }}>Signup</Button>
+                {/* This button routes to a new page the userRoutes.signup.path */}
               </Link>
 
               {/* Form submit */}
               <Button type="submit" theme="secondary" disabled={isLoading}>
                 Login
                 <Icon size={1.2} style={{ color: white }}>navigate_next</Icon></Button>
+                {/* this button has a type of submit which the computer will recognize since it is within form elements allowing the onSubmit function to be fired once clicked */}
             </div>
           </form>
         </GridCell>
