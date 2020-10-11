@@ -5,6 +5,7 @@ import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
 
 // User routes
+// Path: The endpoints used for the users
 export default {
   login: {
     path: '/user/login',
@@ -15,7 +16,7 @@ export default {
     path: '/user/signup',
     component: Signup
   },
-
+  // User's profile endpoint
   profile: {
     path: '/user/profile',
     component: Profile,

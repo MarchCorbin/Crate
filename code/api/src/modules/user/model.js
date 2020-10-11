@@ -1,7 +1,11 @@
 'use strict'
 
 // User
+// User model
 module.exports = function(sequelize, DataTypes) {
+  // sequalize is making the user object from the user schema database
+  // we can maybe add a profile image
+  // we can add a shipping address attribute to this user object
   let User = sequelize.define('users', {
     name: {
       type: DataTypes.STRING
@@ -17,6 +21,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 
+  // Below is creating the relationship between the user and subscription
+  // one to many relationship
   User.associate = function(models) {
     User.hasMany(models.Subscription)
   }

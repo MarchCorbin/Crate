@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const config = require('../config/server.json');
 const params = require('../config/params.json');
 
+// Add shipping attribute for the data we seed
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('users', [

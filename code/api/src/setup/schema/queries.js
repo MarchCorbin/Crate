@@ -17,6 +17,8 @@ const query = new GraphQLObjectType({
     ...product,
     ...crate,
     ...subscription
+    // We can add an orders table to then create a joins table for userProducts
+    // ...orders
   })
 })
 

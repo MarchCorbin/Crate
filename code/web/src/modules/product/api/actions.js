@@ -19,6 +19,8 @@ export const PRODUCTS_GET_RELATED_LIST_FAILURE = 'PRODUCTS/GET_RELATED_LIST_FAIL
 
 // Actions
 
+// Maybe we could use this file to get a list of products per user
+
 // Get list of products
 export function getList(isLoading = true, forceRefresh = false) {
   return dispatch => {

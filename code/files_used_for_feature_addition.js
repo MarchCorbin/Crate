@@ -1,0 +1,36 @@
+/code
+
+  /api
+    /src
+      /migrations
+        /1-user.js
+      /modules
+        /user
+          /model.js
+          /mutations.js
+          /query.js
+          /resolvers.js
+          /types.js
+      /seeders
+        /1-user.js
+      /setup
+        /schema
+          /queries.js
+    /package.json
+
+  /web
+    /src
+      /modules
+        /product
+          /api
+            /action.js
+        /subscription
+          /api
+            /action.js
+        /user
+          /api
+            /action.js
+      /setup
+        /routes
+          /user.js
+    /package.json

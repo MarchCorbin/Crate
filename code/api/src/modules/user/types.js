@@ -1,6 +1,8 @@
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
+// This file defines all the different types that involve the User
+
 // User type
 const UserType = new GraphQLObjectType({
   name: 'user',
@@ -12,6 +14,7 @@ const UserType = new GraphQLObjectType({
     email: { type: GraphQLString },
     password: { type: GraphQLString },
     role: { type: GraphQLString },
+    // Add shipping to user type
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString }
   })
@@ -40,3 +43,9 @@ const UserGenderType = new GraphQLObjectType({
 })
 
 export { UserType, UserLoginType, UserGenderType }
+
+
+// Perhaps we can create a UserPorductsType
+// It can have booleon attribute determining if a user kept or returned the product
+
+// We could create a userProductTable and orderTable

@@ -1,5 +1,6 @@
 // Imports
 import axios from 'axios'
+// Importing query and mutation from gql - GraphQL
 import { query, mutation } from 'gql-query-builder'
 import cookie from 'js-cookie'
 
@@ -13,6 +14,8 @@ export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
+// These actions are what call on the methods in the backend.
+// Axios is how the actons work and call to the back end
 
 // Set a user after login or using localStorage token
 export function setUser(token, user) {
@@ -32,10 +35,11 @@ export function login(userCredentials, isLoading = true) {
       type: LOGIN_REQUEST,
       isLoading
     })
-
+    // Axios calling the post verb with the userLogin operatoin
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
+      // The variables that are added to the params
       fields: ['user {name, email, role}', 'token']
     }))
       .then(response => {
