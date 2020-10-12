@@ -14,7 +14,7 @@ export function messageHide() {
   return { type: MESSAGE_HIDE }
 }
 
-export function upload(data) {
+export function upload(data) { /* this is how an image can be uploaded */
   return dispatch => {
     return axios.post(routeApi + '/upload', data, {
       headers: {
