@@ -47,7 +47,6 @@ const Profile = (props) => (
 
 // Component Properties
 Profile.propTypes = {
-  user: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired
 }
 

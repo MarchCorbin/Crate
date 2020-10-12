@@ -44,10 +44,9 @@ class ProfileDetails extends Component {
 }
 
 // Component Properties
-// ProfileDetails.propTypes = {
-// 	user: PropTypes.object.isRequired,
-// 	logout: PropTypes.func.isRequired
-// }
+ProfileDetails.propTypes = {
+	user: PropTypes.object.isRequired
+}
 
  // Component State
 function profileDetailsState(state) {
