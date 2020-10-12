@@ -1,6 +1,8 @@
+// no idea what this next line is
 'use strict'
 
 // User
+// User model definition
 module.exports = function(sequelize, DataTypes) {
   let User = sequelize.define('users', {
     name: {
@@ -17,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 
+  // DB association with Subscription
   User.associate = function(models) {
     User.hasMany(models.Subscription)
   }

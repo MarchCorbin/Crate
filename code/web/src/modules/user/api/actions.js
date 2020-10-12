@@ -117,3 +117,15 @@ export function getGenders() {
     }))
   }
 }
+
+
+
+// would need a mutation for editing description and
+// shipping address
+
+// for images, you'd use a different endpoint '/upload'
+// when writing the mutation (create/update)
+
+// need a query to ask for a user's order history
+// each order shows what products came in
+// we'd be able to see which of those order_products was "kept" -- aka TRUE
