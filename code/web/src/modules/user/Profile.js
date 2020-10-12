@@ -2,10 +2,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet' // Helmet makes the head dynamic (for SEO)
 import { Link } from 'react-router-dom'
 
-// UI Imports
+// UI Imports (styling)
 import { Grid, GridCell } from '../../ui/grid'
 import { H3, H4 } from '../../ui/typography'
 import Button from '../../ui/button'
@@ -16,7 +16,7 @@ import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
 // Component
-const Profile = (props) => (
+const Profile = (props) => ( /* the props come from line 58 */
   <div>
     {/* SEO */}
     <Helmet>
@@ -26,7 +26,7 @@ const Profile = (props) => (
     {/* Top title bar */}
     <Grid style={{ backgroundColor: grey }}>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-        <H3 font="secondary">My profile</H3>
+        <H3 font="secondary">My profile</H3> {/* the header */}
       </GridCell>
     </Grid>
 
@@ -36,11 +36,11 @@ const Profile = (props) => (
 
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
 
-        <Link to={userRoutes.subscriptions.path}>
+        <Link to={userRoutes.subscriptions.path}> {/* links to Subscription page */}
           <Button theme="primary">Subscriptions</Button>
         </Link>
 
-        <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
+        <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button> {/* logs out the customer with the logout action */}
       </GridCell>
     </Grid>
   </div>
@@ -53,10 +53,10 @@ Profile.propTypes = {
 }
 
 // Component State
-function profileState(state) {
+function profileState(state) { {/* where props come from */}
   return {
     user: state.user
   }
 }
 
-export default connect(profileState, { logout })(Profile)
+export default connect(profileState, { logout })(Profile) /* connects to logout action */
