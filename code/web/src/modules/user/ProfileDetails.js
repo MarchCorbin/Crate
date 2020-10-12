@@ -14,13 +14,14 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { logout } from './api/actions'
+import { editDetails } from './api/actions'
 
 // Component
 class ProfileDetails extends Component {
 	constructor() {
 		super()
 		this.state = {
+			description: '',
 			email: '',
 			editMode: false
 		}
@@ -41,16 +42,27 @@ class ProfileDetails extends Component {
 		})
 	}
 
+	onSubmit = () => {
+		let newDetails = {
+			id: this.props.user.details.id,
+			name: this.props.user.details.name,
+			email: this.state.email
+		}
+		this.props.editDetails(newDetails)
+		this.setState({ editMode: false })
+	}
+
 	render() {
 		return (
 			<Grid>
 				<GridCell style={{ padding: '2em', textAlign: 'center' }}>
-					<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
 
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
 					{this.state.editMode
-						? <Input
+						? 
+						<>
+							<Input
 								type="text"
 								fullWidth={true}
 								placeholder={this.state.email}
@@ -60,7 +72,13 @@ class ProfileDetails extends Component {
 								value={this.state.email}
 								onChange={this.onChange}
 							/>
-						: <p style={{ color: grey2, marginBottom: '2em' }}>{this.props.user.details.email}</p>
+							<Button theme="primary" onClick={this.onSubmit} style={{ marginLeft: '1em' }}>Save Changes</Button>
+						</>
+						:
+						<>
+							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
+							<p style={{ color: grey2, marginBottom: '2em' }}>{this.props.user.details.email}</p>
+						</>
 					}
 				</GridCell>
 			</Grid>
@@ -81,4 +99,4 @@ function profileDetailsState(state) {
 	}
 }
 
-export default connect(profileDetailsState, { logout })(ProfileDetails)
+export default connect(profileDetailsState, { editDetails })(ProfileDetails)
