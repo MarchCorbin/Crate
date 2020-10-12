@@ -34,6 +34,13 @@ class ProfileDetails extends Component {
 		this.setState({ editMode: true })
 	}
 
+	onChange = event => {
+		let inputValue = event.target.value
+		this.setState({
+			[event.target.name]: inputValue
+		})
+	}
+
 	render() {
 		return (
 			<Grid>
@@ -51,7 +58,7 @@ class ProfileDetails extends Component {
 								name="email"
 								autoComplete="off"
 								value={this.state.email}
-								// onChange={this.onChange}
+								onChange={this.onChange}
 							/>
 						: <p style={{ color: grey2, marginBottom: '2em' }}>{this.props.user.details.email}</p>
 					}
