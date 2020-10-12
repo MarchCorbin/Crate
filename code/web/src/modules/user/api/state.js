@@ -34,7 +34,7 @@ export default (state = userInitialState, action) => {
         isLoading: false
       }
 
-    case LOGOUT:
+    case LOGOUT: /* this is the logout reducer? */
       return {
         ...state,
         error: null,

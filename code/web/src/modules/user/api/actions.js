@@ -1,6 +1,6 @@
 // Imports
-import axios from 'axios'
-import { query, mutation } from 'gql-query-builder'
+import axios from 'axios' /* equivalent to fetch */
+import { query, mutation } from 'gql-query-builder' /* query to GET, mutation to POST, PATCH, DELETE */
 import cookie from 'js-cookie'
 
 // App Imports

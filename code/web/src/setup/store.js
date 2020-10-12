@@ -12,7 +12,7 @@ import * as subscription from '../modules/subscription/api/state'
 import * as crate from '../modules/crate/api/state'
 
 // App Reducer
-const appReducer = combineReducers({
+const appReducer = combineReducers({ /* the combineReducers function packages up all the reducers (combines them) */
   common,
   user,
   ...product,
@@ -21,7 +21,7 @@ const appReducer = combineReducers({
 })
 
 // Root Reducer
-export const rootReducer = (state, action) => {
+export const rootReducer = (state, action) => { /* rootReducer is the object where the combined reducers live */
   if (action.type === 'RESET') {
     state = undefined
   }
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
 }
 
 // Store
-export const store = createStore(
+export const store = createStore( /* this creates store which is where state will live */
   rootReducer,
   initialState,
   composeWithDevTools(

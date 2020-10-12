@@ -11,7 +11,7 @@ import RoutePrivate from '../../modules/auth/RoutePrivate'
 const App = () => (
   <Layout>
     <Switch>
-      {Object.values(routes).map((route, index) => (
+      {Object.values(routes).map((route, index) => ( /* iterates through the routes and renders them */
         route.auth
           ? <RoutePrivate {...route} key={index} path={typeof route.path === 'function' ? route.path() : route.path}/>
           : <Route {...route} key={index} path={typeof route.path === 'function' ? route.path() : route.path}/>
