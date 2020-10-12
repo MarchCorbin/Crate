@@ -11,6 +11,8 @@ const models = {
   Subscription: databaseConnection.import('../modules/subscription/model')
 }
 
+// Create relationships/associations according to whether
+// they are specified in the model definitions
 Object.keys(models).forEach(modelName => {
   if (models[modelName].associate) {
     models[modelName].associate(models)

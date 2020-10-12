@@ -13,7 +13,7 @@ export async function create(parentValue, { name, email, password }) {
   const user = await models.User.findOne({ where: { email } })
 
   if (!user) {
-    // User does not exists
+    // User does not exist
     const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
 
     return await models.User.create({
@@ -31,7 +31,7 @@ export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
 
   if (!user) {
-    // User does not exists
+    // User does not exist
     throw new Error(`We do not have any user registered with ${ email } email address. Please signup.`)
   } else {
     const userDetails = user.get()
@@ -77,3 +77,5 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// Will need to write an Update resolver.

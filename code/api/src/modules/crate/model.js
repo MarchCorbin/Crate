@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT
     }
   })
-
+  // DB relationship/association
   Crate.associate = function(models) {
     Crate.hasMany(models.Subscription)
   }

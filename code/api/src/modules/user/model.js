@@ -3,6 +3,7 @@
 
 // User
 // User model definition
+// will need to add description and shipping address?
 module.exports = function(sequelize, DataTypes) {
   let User = sequelize.define('users', {
     name: {

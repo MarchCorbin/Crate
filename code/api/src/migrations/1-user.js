@@ -27,6 +27,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+      // need to add to this migration for description
+      // and shipping address 
     });
   },
   down: (queryInterface, Sequelize) => {

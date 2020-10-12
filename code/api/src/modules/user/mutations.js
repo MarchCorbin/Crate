@@ -38,3 +38,8 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+// Update
+// Will need to create this mutation in order to update
+// an existing user with new description and shipping address
+// Will need to write corresponding resolver, 'update'
