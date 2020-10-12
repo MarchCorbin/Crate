@@ -16,7 +16,7 @@ export default {
     component: Signup
   },
 
-  profile: {
+  profile: { /* This is the route for the Profile page */
     path: '/user/profile',
     component: Profile,
     auth: true
