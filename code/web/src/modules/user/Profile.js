@@ -19,7 +19,7 @@ import { logout } from './api/actions'
 const Profile = (props) => (
   <div>
     {/* SEO */}
-    <Helmet>
+    <Helmet> {/* React Helmet is a simple component that allows you to dynamically set what’s in the document’s head section */}
       <title>My Profile - Crate</title>
     </Helmet>
 
