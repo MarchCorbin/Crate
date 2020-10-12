@@ -2,6 +2,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // User type
+// Types are what you can query through GraphQL 
 // Will probably need to update this to include fields for
 // description and shipping address
 const UserType = new GraphQLObjectType({

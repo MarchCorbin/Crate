@@ -118,7 +118,19 @@ export function getGenders() {
   }
 }
 
+// Update user profile
+// export function updateProfile() {
+//   return dispatch => {
+//     return axios.post(routeApi, mutation({
+//       operation: 'updateUser',
+//       fields: ['id', 'name', 'description', 'email', 'address', 'image']
+//     }))
+//   }
+// }
 
+
+// FE needs to build an export function updateProfile()
+// that maps to a mutation({ operation: 'updateUser', fields: ...})
 
 // would need a mutation for editing description and
 // shipping address
