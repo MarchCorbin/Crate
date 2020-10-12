@@ -11,13 +11,13 @@ import setupStartServer from './setup/start-server'
 const server = express()
 
 // Setup load modules
-setupLoadModules(server)
+setupLoadModules(server) // Load the express modules
 
 // Setup uploads
-setupUpload(server)
+setupUpload(server) // Uploads the images in the "/upload" path
 
 // Setup GraphQL
-setupGraphQL(server)
+setupGraphQL(server) // Boot up the GraphQl server method
 
 // Start server
-setupStartServer(server)
+setupStartServer(server) // server function that boots up the app

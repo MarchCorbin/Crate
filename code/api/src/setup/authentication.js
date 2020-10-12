@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import serverConfig from '../config/server.json'
 
 // Authentication middleware
-export default function (request, response, next) {
+export default function (request, response, next) { // Authentication middleware
   let authToken = request.headers.authorization
 
   if (authToken && authToken !== null) {

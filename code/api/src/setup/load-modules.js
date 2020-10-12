@@ -14,20 +14,20 @@ export default function (server) {
   console.info('SETUP - Loading modules...')
 
   // Enable CORS
-  server.use(cors())
+  server.use(cors()) // Give header permissions for the frontend to access the api
 
   // Request body parser
-  server.use(bodyParser.json())
+  server.use(bodyParser.json()) // Allow requests from the frontend
   server.use(bodyParser.urlencoded({ extended: false }))
 
   // Request body cookie parser
-  server.use(cookieParser())
+  server.use(cookieParser()) // Saves cookies
 
   // Static files folder
-  server.use(express.static(path.join(__dirname, '..', '..', 'public')))
+  server.use(express.static(path.join(__dirname, '..', '..', 'public'))) // Set a public folder
 
   // HTTP logger
   if(NODE_ENV === 'development') {
-    server.use(morgan('tiny'))
+    server.use(morgan('tiny')) // Logs for the developers
   }
 }

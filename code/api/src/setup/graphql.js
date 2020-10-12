@@ -10,17 +10,17 @@ import schema from './schema'
 export default function (server) {
   console.info('SETUP - GraphQL...')
 
-  server.use(authentication)
+  server.use(authentication) // Middleware that checks if the user is authentic
 
   // API (GraphQL on route `/`)
-  server.use(serverConfig.graphql.endpoint, graphqlHTTP(request => ({
-    schema,
-    graphiql: serverConfig.graphql.ide,
-    pretty: serverConfig.graphql.pretty,
+  server.use(serverConfig.graphql.endpoint, graphqlHTTP(request =>({
+    schema, // Links to the schema methods to find types, queries, mutations and resolvers
+    graphiql: serverConfig.graphql.ide,  // set graphql variable to true
+    pretty: serverConfig.graphql.pretty, // set graphql variable to true
     context: {
       auth: {
         user: request.user,
-        isAuthenticated: request.user && request.user.id > 0
+        isAuthenticated: request.user && request.user.id > 0 // should return a boolean to check if there is a valid user
       }
     }
   })))

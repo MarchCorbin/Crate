@@ -22,7 +22,7 @@ export const user = {
 
 // Auth
 export const userLogin = {
-  type: UserLoginType,
+    type: UserLoginType,
   args: {
     email: {
       name: 'email',

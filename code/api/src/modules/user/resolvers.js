@@ -77,3 +77,5 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// make a update results which is in the resolvers

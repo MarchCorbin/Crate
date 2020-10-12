@@ -6,7 +6,7 @@ const UserType = new GraphQLObjectType({
   name: 'user',
   description: 'User type',
 
-  fields: () => ({
+  fields: () => ({ // add the description, shipping address, products(ProductType), crate-product(CrateProductType)
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
     email: { type: GraphQLString },

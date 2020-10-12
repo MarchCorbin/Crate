@@ -13,7 +13,7 @@ const query = new GraphQLObjectType({
   description: 'API Queries [Read]',
 
   fields: () => ({
-    ...user,
+    ...user, // user spread operator to make a copy of the field
     ...product,
     ...crate,
     ...subscription
