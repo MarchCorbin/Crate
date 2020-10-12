@@ -28,7 +28,8 @@ module.exports = {
         type: Sequelize.DATE
       }
       // need to add to this migration for description
-      // and shipping address 
+      // and shipping address
+      // add column for image URL
     });
   },
   down: (queryInterface, Sequelize) => {
