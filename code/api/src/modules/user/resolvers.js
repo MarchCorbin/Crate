@@ -78,16 +78,16 @@ export async function getGenders() {
   return Object.values(params.user.gender)
 }
 
-// Update
-export async function update(parentValue, { id, name, description, email, address, image }) {
+// Update (just name and email for now to match FE)
+export async function update(parentValue, { id, name, email, image, description, address }) {
   return await models.User.update(
     {
       name,
-      description,
       email,
-      address,
-      image
+      description,
+      address
     },
-    {where: {id}}
-  )
+    {
+      where: { id }
+    });
 }
