@@ -29,7 +29,7 @@ export const userSignup = {
 
 // User update
 export const userUpdate = {
-  type: userType,
+  type: UserType,
   args: {
     id: {
       name: 'id',
