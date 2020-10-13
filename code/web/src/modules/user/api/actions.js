@@ -118,13 +118,17 @@ export function getGenders() {
   }
 }
 
-// Edit user details (email, shipping address, description)
+// Edit user details
 export function editDetails(newDetails) {
 	return dispatch => {
 		return axios.post(routeApi, mutation({
 			operation: 'updateUser',
 			variables: newDetails,
-			fields: ['id', 'name', 'email']
-		}))
+			fields: ['name', 'email']}, {
+        headers: {
+          'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+        }
+      }
+		))
 	}
 }

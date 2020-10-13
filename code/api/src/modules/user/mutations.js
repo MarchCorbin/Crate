@@ -52,22 +52,22 @@ export const updateUser = {
     email: {
       name: 'email',
       type: GraphQLString
-    },
-
-    description: {
-      name: 'description',
-      type: GraphQLString
-    },
-
-    address: {
-      name: 'address',
-      type: GraphQLString
-    },
-
-    image: {
-      name: 'image',
-      type: GraphQLString
     }
+
+    // description: {
+    //   name: 'description',
+    //   type: GraphQLString
+    // },
+    //
+    // address: {
+    //   name: 'address',
+    //   type: GraphQLString
+    // },
+    //
+    // image: {
+    //   name: 'image',
+    //   type: GraphQLString
+    // }
   },
   resolve: update
 }

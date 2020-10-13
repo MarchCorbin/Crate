@@ -26,7 +26,7 @@ describe("user queries", () => {
     );
   })
 
-  it("users - returns all users", async () => {
+  xit("users - returns all users", async () => {
     const response = await request(server)
       .post('/')
       .send({ query: '{ users { name email } }' })
@@ -35,10 +35,20 @@ describe("user queries", () => {
     expect(response.body.data.users.length).toEqual(2)
   })
 
-  it("user - returns user with specific id", async() => {
+  xit("user - returns user with specific id", async() => {
     const response = await request(server)
       .post('/')
       .send({ query: '{ user(id: 1) { name email }}'})
+      .expect(200)
+
+    console.log(response.body)
+    expect(response.body.data.user.name).toEqual('The Admin')
+  })
+
+  xit("updateUser - updates user profile info", async() => {
+    const response = await request(server)
+      .post('/')
+      .send({ mutation: '{ updateUser { name email description }}'})
       .expect(200)
 
     console.log(response.body)
