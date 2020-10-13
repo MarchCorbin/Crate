@@ -27,6 +27,43 @@ export const userSignup = {
   resolve: create
 }
 
+// User update
+export const userUpdate = {
+  type: userType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+
+    name: {
+      name: 'name',
+      type: GraphQLString
+    },
+
+    email: {
+      name: 'email',
+      type: GraphQLString
+    },
+
+    description: {
+      name: 'description',
+      type: GraphQLString
+    },
+
+    address: {
+      name: 'address',
+      type: GraphQLString
+    },
+
+    image: {
+      name: 'image',
+      type: GraphQLString
+    }
+  },
+  resolve: update
+}
+
 // Remove
 export const userRemove = {
   type: UserType,
