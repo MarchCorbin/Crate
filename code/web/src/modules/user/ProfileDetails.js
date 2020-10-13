@@ -60,6 +60,9 @@ class ProfileDetails extends Component {
 				<div style={{ padding: '2em' }}>
 				<img src={'/images/Profile.png'} style={{width: '10em'}}
 				/>
+				<img src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
+
+
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
 					{this.state.editMode
@@ -104,8 +107,8 @@ class ProfileDetails extends Component {
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
 						<H4>{this.state.description}</H4>
-							<p style={{ color: grey2, marginBottom: '2em' }}>{this.props.user.details.email}</p>
-							<p style={{ color: grey2, marginBottom: '2em' }}>{this.state.address}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.email}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
 					}
 				</div>
