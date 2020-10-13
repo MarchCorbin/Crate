@@ -40,8 +40,8 @@ export const userRemove = {
 }
 
 // User update
-export const userUpdate = {
-  type: CrateType,
+export const updateUser = {
+  type: UserType,
   args: {
     id: {
       name: 'id',
@@ -53,8 +53,23 @@ export const userUpdate = {
       type: GraphQLString
     },
 
+    email: {
+      name: 'email',
+      type: GraphQLString
+    },
+
     description: {
       name: 'description',
+      type: GraphQLString
+    },
+
+    address: {
+      name: 'address',
+      type: GraphQLString
+    },
+
+    image: {
+      name: 'image',
       type: GraphQLString
     }
   },
