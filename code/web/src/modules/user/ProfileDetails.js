@@ -9,12 +9,13 @@ import { Link } from 'react-router-dom'
 import { Grid, GridCell } from '../../ui/grid'
 import { H3, H4 } from '../../ui/typography'
 import Button from '../../ui/button'
-import { Input } from '../../ui/input'
+import { Input, Textarea } from '../../ui/input'
 import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { editDetails } from './api/actions'
+
 
 // Component
 class ProfileDetails extends Component {
@@ -23,6 +24,7 @@ class ProfileDetails extends Component {
 		this.state = {
 			description: '',
 			email: '',
+			address: '',
 			editMode: false
 		}
 	}
@@ -54,14 +56,25 @@ class ProfileDetails extends Component {
 
 	render() {
 		return (
-			<Grid>
-				<GridCell style={{ padding: '2em', textAlign: 'center' }}>
-
+			<section style={{display: 'flex'}}>
+				<div style={{ padding: '2em' }}>
+				{/* <img src={'/images/Profile.png'} width={'10em'} /> */}
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
 					{this.state.editMode
 						? 
 						<>
+							<Input
+								type="text"
+								fullWidth={true}
+								placeholder={this.state.description.length > 1 && this.state.description || 'Description'}
+								required="required"
+								name="description"
+								autoComplete="off"
+								value={this.state.description}
+								onChange={this.onChange}
+								style={{width:'33vw', float: 'left'}}
+								/>
 							<Input
 								type="text"
 								fullWidth={true}
@@ -71,17 +84,31 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.email}
 								onChange={this.onChange}
+								style={{width:'33vw', float: 'left'}}
+							/>
+							<Input
+								type="text"
+								fullWidth={true}
+								placeholder={this.state.address.length > 1 && this.state.address || 'Address'}
+								required="required"
+								name="address"
+								autoComplete="off"
+								value={this.state.address}
+								onChange={this.onChange}
+								style={{width:'33vw', float: 'left'}}
 							/>
 							<Button theme="primary" onClick={this.onSubmit} style={{ marginLeft: '1em' }}>Save Changes</Button>
 						</>
 						:
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
+						<H4>{this.state.description}</H4>
 							<p style={{ color: grey2, marginBottom: '2em' }}>{this.props.user.details.email}</p>
+							<p style={{ color: grey2, marginBottom: '2em' }}>{this.state.address}</p>
 						</>
 					}
-				</GridCell>
-			</Grid>
+				</div>
+			</section>
 		)
 	}
 
