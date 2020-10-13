@@ -38,3 +38,25 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+// User update
+export const userUpdate = {
+  type: CrateType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+
+    name: {
+      name: 'name',
+      type: GraphQLString
+    },
+
+    description: {
+      name: 'description',
+      type: GraphQLString
+    }
+  },
+  resolve: update
+}
