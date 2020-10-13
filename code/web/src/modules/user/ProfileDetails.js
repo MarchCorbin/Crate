@@ -58,7 +58,8 @@ class ProfileDetails extends Component {
 		return (
 			<section style={{display: 'flex'}}>
 				<div style={{ padding: '2em' }}>
-				{/* <img src={'/images/Profile.png'} width={'10em'} /> */}
+				<img src={'/images/Profile.png'} style={{width: '10em'}}
+				/>
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
 					{this.state.editMode
@@ -97,7 +98,7 @@ class ProfileDetails extends Component {
 								onChange={this.onChange}
 								style={{width:'33vw', float: 'left'}}
 							/>
-							<Button theme="primary" onClick={this.onSubmit} style={{ marginLeft: '1em' }}>Save Changes</Button>
+							<Button theme="primary" onClick={this.onSubmit} style={{ margin: '1em' }}>Save Changes</Button>
 						</>
 						:
 						<>
