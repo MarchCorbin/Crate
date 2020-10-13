@@ -7,6 +7,8 @@ import graphqlHTTP from 'express-graphql';
 import schema from '../../setup/schema';
 
 describe("user queries", () => {
+  // this variable needs to be outside of the beforeAll block
+  // in javascript. In Ruby it wouldn't matter.
   let server;
   // test setup
   beforeAll(() => {
@@ -29,7 +31,17 @@ describe("user queries", () => {
       .expect(200)
 
     expect(response.body.data.users.length).toEqual(2)
-    expect(response.body.data.users[0].id).toEqual(1)
   })
 
-});
+  it("user - returns user with specific id", async() => {
+    const response = await request(server)
+      .post('/')
+      .send({ query: '{ user(id: 1) { name email }}'})
+      .expect(200)
+
+    console.log(response.body)
+    expect(response.body.data.user.name).toEqual('The Admin')
+  })
+
+  // TEST TEARDOWN
+})
