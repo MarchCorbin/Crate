@@ -77,3 +77,24 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// User Update
+
+export  async function update(parentValue, { name, email, image, description, address }, { auth }) {
+  if (auth.isAuthenticated) {
+    return await models.User.update(
+        {
+          name,
+          email,
+          image,
+          description,
+          address
+        },
+        {
+          where: { id: auth.user.id }
+        });
+  } else {
+    // User does not exists
+    throw new Error(`The User does not exist. Please signup.`)
+  }
+}
