@@ -15,6 +15,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { editDetails } from './api/actions'
+import { messageShow } from '../common/api/actions'
 
 // Component
 class ProfileDetails extends Component {
@@ -24,12 +25,19 @@ class ProfileDetails extends Component {
 			description: '',
 			email: '',
 			address: '',
-			editMode: false
+			image: '',
+			editMode: false,
+			isLoading: false,
 		}
 	}
 
 	componentDidMount = () => {
-		this.setState({ email: this.props.user.details.email })
+		const userDetails = this.props.user.details
+		this.setState({
+			description: userDetails.description,
+			email: userDetails.email,
+			address: userDetails.address,
+		 })
 	}
 
 	onClick = () => {
@@ -43,12 +51,60 @@ class ProfileDetails extends Component {
 		})
 	}
 
+	// onUpload = (event) => {
+	// 	console.log(event.target)
+  //   this.props.messageShow('Uploading file, please wait...')
+
+  //   this.setState({
+  //     isLoading: true
+  //   })
+
+  //   let data = new FormData()
+  //   // data.append('file', event.target.files[0])
+
+  //   // Upload image
+  //   this.props.upload(data)
+  //     .then(response => {
+  //       if (response.status === 200) {
+  //         this.props.messageShow('File uploaded successfully.')
+
+  //         let product = this.state.product
+  //         product.image = `/images/uploads/${ response.data.file }`
+
+  //         this.setState({
+  //           product
+  //         })
+  //       } else {
+  //         this.props.messageShow('Please try again.')
+  //       }
+  //     })
+  //     .catch(error => {
+  //       this.props.messageShow('There was some error. Please try again.')
+
+  //     })
+  //     .then(() => {
+  //       this.setState({
+  //         isLoading: false
+  //       })
+
+  //       window.setTimeout(() => {
+  //         this.props.messageHide()
+  //       }, 5000)
+  //     })
+  // }
+
 	onSubmit = () => {
 			let newDetails = {
 				name: this.props.user.details.name,
-				email: this.state.email
+				description: this.state.description,
+				email: this.state.email,
+				address: this.state.address
 			}
 			this.props.editDetails(newDetails)
+				// .then(response => {
+				// 	console.log(response)
+				// 	this.setState({ email: email ,editMode: false })
+				// })
 			this.setState({ editMode: false })
 		}
 
@@ -58,7 +114,7 @@ class ProfileDetails extends Component {
 				<div style={{ padding: '2em' }}>
 				<img src={'/images/Profile.png'} style={{width: '10em'}}
 				/>
-				<img src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
+				<img onClick={this.onUpload} src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
 
 
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
@@ -69,7 +125,7 @@ class ProfileDetails extends Component {
 							<Input
 								type="text"
 								fullWidth={true}
-								placeholder={this.state.description.length > 1 && this.state.description || 'Description'}
+								placeholder={this.state.description || 'Description'}
 								required="required"
 								name="description"
 								autoComplete="off"
@@ -91,7 +147,7 @@ class ProfileDetails extends Component {
 							<Input
 								type="text"
 								fullWidth={true}
-								placeholder={this.state.address.length > 1 && this.state.address || 'Address'}
+								placeholder={this.state.address || 'Address'}
 								required="required"
 								name="address"
 								autoComplete="off"
@@ -104,9 +160,9 @@ class ProfileDetails extends Component {
 						:
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-						<H4>{this.state.description}</H4>
+							<H4>{this.props.user.details.description}</H4>
 							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.email}</p>
-							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.address}</p>
 						</>
 					}
 				</div>
@@ -118,7 +174,8 @@ class ProfileDetails extends Component {
 
 // Component Properties
 ProfileDetails.propTypes = {
-	user: PropTypes.object.isRequired
+	user: PropTypes.object.isRequired,
+	messageShow: PropTypes.func.isRequired,
 }
 
  // Component State
@@ -128,4 +185,7 @@ function profileDetailsState(state) {
 	}
 }
 
-export default connect(profileDetailsState, { editDetails })(ProfileDetails)
+export default connect(profileDetailsState, {
+	editDetails,
+	messageShow
+})(ProfileDetails)
