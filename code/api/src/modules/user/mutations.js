@@ -40,7 +40,7 @@ export const userRemove = {
 }
 
 // User update
-export const updateUser = {
+export const userUpdate = {
   type: UserUpdateType,
   args: {
 
