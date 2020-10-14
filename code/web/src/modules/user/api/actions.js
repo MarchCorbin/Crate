@@ -124,11 +124,7 @@ export function editDetails(newDetails) {
 		return axios.post(routeApi, mutation({
 			operation: 'updateUser',
 			variables: newDetails,
-			fields: ['name', 'email']}, {
-        headers: {
-          'Authorization': `Bearer ${window.localStorage.getItem('token')}`
-        }
-      }
+			fields: ['name', 'email']}
 		))
 	}
 }

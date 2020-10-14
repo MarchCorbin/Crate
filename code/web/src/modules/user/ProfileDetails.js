@@ -53,28 +53,6 @@ class ProfileDetails extends Component {
 			this.setState({ editMode: false })
 		}
 
-	// onSubmit = (event) => {
-	// 	event.preventDefault()
-	// 	let newDetails = {
-	// 		id: this.props.user.details.id,
-	// 		name: this.props.user.details.name,
-	// 		email: this.state.email
-	// 	}
-	//
-	// 	this.props.editDetails(newDetails)
-	// 	.then(response => {
-	// 		this.setState({
-	// 			editMode: false
-	// 		})
-	// 	})
-	// 	.catch(error => {
-	// 		this.setState({
-	// 			editMode: true,
-	// 			error: 'Error updating user.'
-	// 		})
-	// 	})
-	// }
-
 	render() {
 		return (
 			<section style={{display: 'flex'}}>
