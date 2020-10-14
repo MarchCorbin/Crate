@@ -16,7 +16,6 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { editDetails } from './api/actions'
 
-
 // Component
 class ProfileDetails extends Component {
 	constructor() {

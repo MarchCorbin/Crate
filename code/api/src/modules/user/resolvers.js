@@ -79,32 +79,20 @@ export async function getGenders() {
 }
 
 // Update (just name and email for now to match FE)
-export async function update(parentValue, { name, email }, { auth }) {
+export async function update(parentValue, { name, email, description }, { auth }) {
   if (auth.isAuthenticated) {
     return await models.User.update(
       {
         name,
-        email
+        email,
+        description,
+        address,
+        image
       },
       {
         where: { id: auth.user.id }
       });
   } else {
-    throw new Error('Error')
+    throw new Error('Could not update user.')
   }
 }
-
-// Update (just name and email for now to match FE)
-// export async function update(parentValue, { name, email, image, description, address }) {
-//   return await models.User.update(
-//     {
-//       name,
-//       email,
-//       image,
-//       description,
-//       address
-//     },
-//     {
-//       where: { id: auth.user.id }
-//     });
-// }
