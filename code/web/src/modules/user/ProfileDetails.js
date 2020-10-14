@@ -14,7 +14,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { editDetails } from './api/actions'
+import { editDetails, getDetails } from './api/actions'
 import { messageShow } from '../common/api/actions'
 
 // Component
@@ -31,7 +31,10 @@ class ProfileDetails extends Component {
 		}
 	}
 
+
+
 	componentDidMount = () => {
+		console.log('IAMWORKING')
 		const userDetails = this.props.user.details
 		this.setState({
 			description: userDetails.description,
@@ -101,19 +104,28 @@ class ProfileDetails extends Component {
 				address: this.state.address
 			}
 			this.props.editDetails(newDetails)
-				// .then(response => {
-				// 	console.log(response)
-				// 	this.setState({ email: email ,editMode: false })
-				// })
-			this.setState({ editMode: false })
+				.then(response => {
+					this.props.getDetails(response.data.data.userUpdate)
+					this.setState({
+						email: response.data.data.userUpdate.email,
+						editMode: false,
+						address: response.data.data.userUpdate.address,
+						description: response.data.data.userUpdate.description
+					})
+				})
+			this.setState({ editMode: false})
+			
 		}
 
 	render() {
 		return (
 			<section style={{display: 'flex'}}>
 				<div style={{ padding: '2em' }}>
-				<img src={'/images/Profile.png'} style={{width: '10em'}}
-				/>
+				<img  src={'/images/Profile.png'} style={{width: '10em'}}/>
+					{/* <input type = "file" >
+					</input> */}
+			
+				
 				<img onClick={this.onUpload} src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
 
 
@@ -122,6 +134,13 @@ class ProfileDetails extends Component {
 					{this.state.editMode
 						?
 						<>
+						  {/* <div style={{ marginTop: '1em', background: 'green' }}> */}
+                    {/* <input
+                      type="file" */}
+                      {/* // onChange={this.onUpload}
+                      // required={this.state.product.id === 0}
+                    />
+                  </div> */}
 							<Input
 								type="text"
 								fullWidth={true}
@@ -160,9 +179,9 @@ class ProfileDetails extends Component {
 						:
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-							<H4>{this.props.user.details.description}</H4>
-							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.email}</p>
-							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.address}</p>
+							<p>{this.state.description}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
 					}
 				</div>
@@ -187,5 +206,6 @@ function profileDetailsState(state) {
 
 export default connect(profileDetailsState, {
 	editDetails,
-	messageShow
+	messageShow, 
+	getDetails
 })(ProfileDetails)
