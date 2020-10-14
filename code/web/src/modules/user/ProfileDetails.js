@@ -16,7 +16,6 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { editDetails } from './api/actions'
 
-
 // Component
 class ProfileDetails extends Component {
 	constructor() {
@@ -45,14 +44,13 @@ class ProfileDetails extends Component {
 	}
 
 	onSubmit = () => {
-		let newDetails = {
-			id: this.props.user.details.id,
-			name: this.props.user.details.name,
-			email: this.state.email
+			let newDetails = {
+				name: this.props.user.details.name,
+				email: this.state.email
+			}
+			this.props.editDetails(newDetails)
+			this.setState({ editMode: false })
 		}
-		this.props.editDetails(newDetails)
-		this.setState({ editMode: false })
-	}
 
 	render() {
 		return (
@@ -66,7 +64,7 @@ class ProfileDetails extends Component {
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
 					{this.state.editMode
-						? 
+						?
 						<>
 							<Input
 								type="text"
