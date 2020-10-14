@@ -77,3 +77,22 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// Update (just name and email for now to match FE)
+export async function update(parentValue, { name, email, description }, { auth }) {
+  if (auth.isAuthenticated) {
+    return await models.User.update(
+      {
+        name,
+        email,
+        description,
+        address,
+        image
+      },
+      {
+        where: { id: auth.user.id }
+      });
+  } else {
+    throw new Error('Could not update user.')
+  }
+}

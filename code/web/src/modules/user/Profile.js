@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom'
 
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
-import { H3, H4 } from '../../ui/typography'
+import { H3 } from '../../ui/typography'
 import Button from '../../ui/button'
-import { grey, grey2 } from '../../ui/common/colors'
+import { grey } from '../../ui/common/colors'
 
 // App Imports
+import ProfileDetails from './ProfileDetails'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
@@ -32,9 +33,6 @@ const Profile = (props) => (
 
     <Grid>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-        <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
-
-        <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
 
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
@@ -43,20 +41,14 @@ const Profile = (props) => (
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>
     </Grid>
+
+		<ProfileDetails />
   </div>
 )
 
 // Component Properties
 Profile.propTypes = {
-  user: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired
 }
 
-// Component State
-function profileState(state) {
-  return {
-    user: state.user
-  }
-}
-
-export default connect(profileState, { logout })(Profile)
+export default connect(null, { logout })(Profile)
