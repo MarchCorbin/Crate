@@ -122,7 +122,7 @@ export function getGenders() {
 export function editDetails(newDetails) {
 	return dispatch => {
 		return axios.post(routeApi, mutation({
-			operation: 'updateUser',
+			operation: 'userUpdate',
 			variables: newDetails,
 			fields: ['name', 'description', 'email', 'address']}
 		))
