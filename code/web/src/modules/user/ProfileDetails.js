@@ -46,10 +46,16 @@ class ProfileDetails extends Component {
 	onSubmit = () => {
 			let newDetails = {
 				name: this.props.user.details.name,
-				email: this.state.email
+				description: this.state.description,
+				email: this.state.email,
+				address: this.state.address
 			}
 			this.props.editDetails(newDetails)
-			this.setState({ editMode: false })
+				.then(response => {
+					console.log(response)
+					// this.setState({ email:  ,editMode: false })
+				})
+			// this.setState({ editMode: false })
 		}
 
 	render() {
