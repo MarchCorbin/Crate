@@ -48,11 +48,10 @@ describe("user queries", () => {
   xit("updateUser - updates user profile info", async() => {
     const response = await request(server)
       .post('/')
-      .send({ mutation: '{ updateUser { name email description }}'})
+      .send()
       .expect(200)
 
-    console.log(response.body)
-    expect(response.body.data.user.name).toEqual('The Admin')
+    expect(response.body.data.user.name).toEqual('')
   })
 
   // TEST TEARDOWN
