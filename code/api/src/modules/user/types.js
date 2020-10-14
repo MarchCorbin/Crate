@@ -42,4 +42,16 @@ const UserGenderType = new GraphQLObjectType({
   })
 })
 
-export { UserType, UserLoginType, UserGenderType }
+// User Update Details type
+const UserUpdateType = new GraphQLObjectType({
+	name: 'updateUser',
+	description: 'Update User',
+	fields: () => ({
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    email: { type: GraphQLString },
+    address: { type: GraphQLString },
+	})
+})
+
+export { UserType, UserLoginType, UserGenderType, UserUpdateType }
