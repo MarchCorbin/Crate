@@ -15,7 +15,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { editDetails, getDetails } from './api/actions'
-import { messageShow } from '../common/api/actions'
+import { messageShow, messageHide, upload} from '../common/api/actions'
 
 // Component
 class ProfileDetails extends Component {
@@ -28,6 +28,7 @@ class ProfileDetails extends Component {
 			image: '',
 			editMode: false,
 			isLoading: false,
+			editPhotoMode: false
 		}
 	}
 
@@ -54,47 +55,47 @@ class ProfileDetails extends Component {
 		})
 	}
 
-	// onUpload = (event) => {
-	// 	console.log(event.target)
-  //   this.props.messageShow('Uploading file, please wait...')
+	onUpload = (event) => {
+		console.log(event.target)
+    this.props.messageShow('Uploading file, please wait...')
 
-  //   this.setState({
-  //     isLoading: true
-  //   })
+    this.setState({
+      isLoading: true
+    })
 
-  //   let data = new FormData()
-  //   // data.append('file', event.target.files[0])
+    let data = new FormData()
+    data.append('file', event.target.files[0])
 
-  //   // Upload image
-  //   this.props.upload(data)
-  //     .then(response => {
-  //       if (response.status === 200) {
-  //         this.props.messageShow('File uploaded successfully.')
+    // Upload image
+    this.props.upload(data)
+      .then(response => {
+        if (response.status === 200) {
+          this.props.messageShow('File uploaded successfully.')
 
-  //         let product = this.state.product
-  //         product.image = `/images/uploads/${ response.data.file }`
+          let image = this.state.image
+          image = `/images/uploads/${ response.data.file }`
 
-  //         this.setState({
-  //           product
-  //         })
-  //       } else {
-  //         this.props.messageShow('Please try again.')
-  //       }
-  //     })
-  //     .catch(error => {
-  //       this.props.messageShow('There was some error. Please try again.')
+          this.setState({
+           	image
+          })
+        } else {
+          this.props.messageShow('Please try again.')
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
 
-  //     })
-  //     .then(() => {
-  //       this.setState({
-  //         isLoading: false
-  //       })
+      })
+      .then(() => {
+        this.setState({
+          isLoading: false
+        })
 
-  //       window.setTimeout(() => {
-  //         this.props.messageHide()
-  //       }, 5000)
-  //     })
-  // }
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
+  }
 
 	onSubmit = () => {
 			let newDetails = {
@@ -113,8 +114,10 @@ class ProfileDetails extends Component {
 						description: response.data.data.userUpdate.description
 					})
 				})
-			this.setState({ editMode: false})
-			
+		}
+
+		openUpload = () => {
+			this.setState({editPhotoMode:true})
 		}
 
 	render() {
@@ -122,11 +125,15 @@ class ProfileDetails extends Component {
 			<section style={{display: 'flex'}}>
 				<div style={{ padding: '2em' }}>
 				<img  src={'/images/Profile.png'} style={{width: '10em'}}/>
-					{/* <input type = "file" >
-					</input> */}
+			
+					
 			
 				
-				<img onClick={this.onUpload} src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
+				<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
+
+
+					{this.state.editPhotoMode && <input type= "file" onChange={this.onUpload}>
+					</input>}
 
 
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
@@ -207,5 +214,7 @@ function profileDetailsState(state) {
 export default connect(profileDetailsState, {
 	editDetails,
 	messageShow, 
-	getDetails
+	getDetails,
+	upload,
+	messageHide,
 })(ProfileDetails)
