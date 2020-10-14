@@ -16,6 +16,8 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { editDetails, getDetails } from './api/actions'
 import { messageShow, messageHide, upload} from '../common/api/actions'
+import { routeImage } from "../../setup/routes/index.js"
+import { renderIf } from '../../setup/helpers'
 
 // Component
 class ProfileDetails extends Component {
@@ -88,13 +90,14 @@ class ProfileDetails extends Component {
       })
       .then(() => {
         this.setState({
-          isLoading: false
+					isLoading: false,
+					editPhotoMode:false
         })
 
         window.setTimeout(() => {
           this.props.messageHide()
         }, 5000)
-      })
+			})
   }
 
 	onSubmit = () => {
@@ -124,8 +127,11 @@ class ProfileDetails extends Component {
 		return (
 			<section style={{display: 'flex'}}>
 				<div style={{ padding: '2em' }}>
-				<img  src={'/images/Profile.png'} style={{width: '10em'}}/>
-			
+					{this.state.image === '' ? <img  src={'/images/Profile.png'} style={{width: '10em'}}/> : <img src={routeImage + this.state.image} style={{width: '10em'}} />}
+			{/* {renderIf(this.state.image !== '', () => (
+                    <img src={routeImage + this.state.image} alt="Image"
+                         style={{ width: 200, marginTop: '1em' }}/>
+                  ))} */}
 					
 			
 				
