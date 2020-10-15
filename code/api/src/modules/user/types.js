@@ -51,6 +51,7 @@ const UserUpdateType = new GraphQLObjectType({
     description: { type: GraphQLString },
     email: { type: GraphQLString },
     address: { type: GraphQLString },
+    image: { type: GraphQLString }
 	})
 })
 

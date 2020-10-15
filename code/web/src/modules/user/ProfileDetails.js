@@ -6,12 +6,11 @@ import { connect } from 'react-redux'
 // UI Imports
 import { H3, H4 } from '../../ui/typography'
 import Button from '../../ui/button'
-import { Input, Textarea } from '../../ui/input'
-import { grey, grey2 } from '../../ui/common/colors'
+import { Input } from '../../ui/input'
+import { grey2 } from '../../ui/common/colors'
 
 // App Imports
-import userRoutes from '../../setup/routes/user'
-import { editDetails, getDetails, getPhoto } from './api/actions'
+import { editDetails, getDetails } from './api/actions'
 import { messageShow, messageHide, upload} from '../common/api/actions'
 import { routeImage } from "../../setup/routes/index.js"
 
@@ -30,16 +29,13 @@ class ProfileDetails extends Component {
 		}
 	}
 
-
-
-	componentDidMount = async() => {
-		console.log(this.props, 'iamprops')
+	componentDidMount = () => {
 		const userDetails = this.props.user.details
-		await this.setState({
+		this.setState({
 			description: userDetails.description,
 			email: userDetails.email,
 			address: userDetails.address,
-			image: this.props.user.image,
+			image: userDetails.image,
 		 })
 	}
 
@@ -67,17 +63,25 @@ class ProfileDetails extends Component {
     // Upload image
     this.props.upload(data)
       .then(response => {
-					console.log(response)
         if (response.status === 200) {
           this.props.messageShow('File uploaded successfully.')
 
 					let image = this.state.image
 					image = `/images/uploads/${ response.data.file }`
 				
-          this.setState({
-           	image
-					})
-						this.props.getPhoto(image)
+					let newDetails = {
+						name: this.props.user.details.name,
+						description: this.state.description,
+						email: this.state.email,
+						address: this.state.address,
+						image: image
+					}
+					this.props.editDetails(newDetails)
+						.then(response => {
+							this.setState({
+								image: response.data.data.userUpdate.image
+							})
+						})
         } else {
           this.props.messageShow('Please try again.')
         }
@@ -211,6 +215,5 @@ export default connect(profileDetailsState, {
 	messageShow, 
 	getDetails,
 	upload,
-	messageHide,
-	getPhoto
+	messageHide
 })(ProfileDetails)
