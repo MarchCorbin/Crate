@@ -79,14 +79,15 @@ export async function getGenders() {
 }
 
 // Update (just name and email for now to match FE)
-export async function update(parentValue, { name, description, email, address }, { auth }) {
+export async function update(parentValue, { name, description, email, address, image }, { auth }) {
   if (auth.isAuthenticated) {
     await models.User.update(
       {
         name,
         description,
         email,
-        address
+        address,
+        image
       },
       {
         where: { id: auth.user.id }
