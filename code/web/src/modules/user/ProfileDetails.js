@@ -14,7 +14,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { editDetails, getDetails } from './api/actions'
+import { editDetails, getDetails, getPhoto } from './api/actions'
 import { messageShow, messageHide, upload} from '../common/api/actions'
 import { routeImage } from "../../setup/routes/index.js"
 import { renderIf } from '../../setup/helpers'
@@ -37,12 +37,13 @@ class ProfileDetails extends Component {
 
 
 	componentDidMount = () => {
-		console.log('IAMWORKING')
+		console.log(this.props.user.image)
 		const userDetails = this.props.user.details
 		this.setState({
 			description: userDetails.description,
 			email: userDetails.email,
 			address: userDetails.address,
+			image: this.props.user.image,
 		 })
 	}
 
@@ -58,7 +59,6 @@ class ProfileDetails extends Component {
 	}
 
 	onUpload = (event) => {
-		console.log(event.target)
     this.props.messageShow('Uploading file, please wait...')
 
     this.setState({
@@ -71,21 +71,24 @@ class ProfileDetails extends Component {
     // Upload image
     this.props.upload(data)
       .then(response => {
+					console.log(response)
         if (response.status === 200) {
           this.props.messageShow('File uploaded successfully.')
 
-          let image = this.state.image
-          image = `/images/uploads/${ response.data.file }`
-
+					let image = this.state.image
+					image = `/images/uploads/${ response.data.file }`
+				
           this.setState({
            	image
-          })
+					})
+						this.props.getPhoto(image)
         } else {
           this.props.messageShow('Please try again.')
         }
       })
       .catch(error => {
-        this.props.messageShow('There was some error. Please try again.')
+				console.log(error, 'iamcatcherror')
+        // this.props.messageShow('There was some error. Please try again.')
 
       })
       .then(() => {
@@ -127,19 +130,17 @@ class ProfileDetails extends Component {
 		return (
 			<section style={{display: 'flex'}}>
 				<div style={{ padding: '2em' }}>
-					{this.state.image === '' ? <img  src={'/images/Profile.png'} style={{width: '10em'}}/> : <img src={routeImage + this.state.image} style={{width: '10em'}} />}
-			{/* {renderIf(this.state.image !== '', () => (
-                    <img src={routeImage + this.state.image} alt="Image"
-                         style={{ width: 200, marginTop: '1em' }}/>
-                  ))} */}
-					
+					<div style={{display: 'flex', flexFlow:'column'}}>
+					{this.state.image === '' ? <img  src={'/images/Profile.png'} style={{width: '10em'}}/> : <img src={routeImage + this.state.image} style={{width: '10em', borderRadius:'50%', height:'10em'}} />}
+						
+
+						{this.state.image === '' ? 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{ width: '2em', position:'relative',bottom: '3em',left: '7em'}} /> : 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{width:'2em', position: 'relative',left:'8em', bottom: '1.5em'}} />}
 			
-				
-				<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
 
 
 					{this.state.editPhotoMode && <input type= "file" onChange={this.onUpload}>
 					</input>}
+					</div>
 
 
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
@@ -192,7 +193,7 @@ class ProfileDetails extends Component {
 						:
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-							<p>{this.state.description}</p>
+							<p style={{margin:'1em'}}>{this.state.description}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
@@ -223,4 +224,5 @@ export default connect(profileDetailsState, {
 	getDetails,
 	upload,
 	messageHide,
+	getPhoto
 })(ProfileDetails)
