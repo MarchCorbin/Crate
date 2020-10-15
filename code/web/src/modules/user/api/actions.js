@@ -11,6 +11,8 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const GET_USER_DETAILS = 'AUTH/GET_USER_DETAILS'
+export const GET_USER_PHOTO = 'AUTH/GET_USER_PHOTO'
 
 // Actions
 
@@ -128,3 +130,22 @@ export function editDetails(newDetails) {
 		))
 	}
 }
+
+export function getDetails(user) {
+  return dispatch => {
+     dispatch({
+       type: GET_USER_DETAILS, 
+       user
+      })
+  }
+}
+
+export function getPhoto(image) {
+  return dispatch => {
+     dispatch({
+       type: GET_USER_PHOTO, 
+       image
+      })
+  }
+}
+

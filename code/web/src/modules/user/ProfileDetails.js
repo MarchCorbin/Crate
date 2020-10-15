@@ -2,11 +2,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
 
 // UI Imports
-import { Grid, GridCell } from '../../ui/grid'
 import { H3, H4 } from '../../ui/typography'
 import Button from '../../ui/button'
 import { Input, Textarea } from '../../ui/input'
@@ -14,8 +11,9 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { editDetails } from './api/actions'
-import { messageShow } from '../common/api/actions'
+import { editDetails, getDetails, getPhoto } from './api/actions'
+import { messageShow, messageHide, upload} from '../common/api/actions'
+import { routeImage } from "../../setup/routes/index.js"
 
 // Component
 class ProfileDetails extends Component {
@@ -28,15 +26,20 @@ class ProfileDetails extends Component {
 			image: '',
 			editMode: false,
 			isLoading: false,
+			editPhotoMode: false
 		}
 	}
 
-	componentDidMount = () => {
+
+
+	componentDidMount = async() => {
+		console.log(this.props, 'iamprops')
 		const userDetails = this.props.user.details
-		this.setState({
+		await this.setState({
 			description: userDetails.description,
 			email: userDetails.email,
 			address: userDetails.address,
+			image: this.props.user.image,
 		 })
 	}
 
@@ -51,47 +54,49 @@ class ProfileDetails extends Component {
 		})
 	}
 
-	// onUpload = (event) => {
-	// 	console.log(event.target)
-  //   this.props.messageShow('Uploading file, please wait...')
+	onUpload = (event) => {
+    this.props.messageShow('Uploading file, please wait...')
 
-  //   this.setState({
-  //     isLoading: true
-  //   })
+    this.setState({
+      isLoading: true
+    })
 
-  //   let data = new FormData()
-  //   // data.append('file', event.target.files[0])
+    let data = new FormData()
+    data.append('file', event.target.files[0])
 
-  //   // Upload image
-  //   this.props.upload(data)
-  //     .then(response => {
-  //       if (response.status === 200) {
-  //         this.props.messageShow('File uploaded successfully.')
+    // Upload image
+    this.props.upload(data)
+      .then(response => {
+					console.log(response)
+        if (response.status === 200) {
+          this.props.messageShow('File uploaded successfully.')
 
-  //         let product = this.state.product
-  //         product.image = `/images/uploads/${ response.data.file }`
+					let image = this.state.image
+					image = `/images/uploads/${ response.data.file }`
+				
+          this.setState({
+           	image
+					})
+						this.props.getPhoto(image)
+        } else {
+          this.props.messageShow('Please try again.')
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
 
-  //         this.setState({
-  //           product
-  //         })
-  //       } else {
-  //         this.props.messageShow('Please try again.')
-  //       }
-  //     })
-  //     .catch(error => {
-  //       this.props.messageShow('There was some error. Please try again.')
+      })
+      .then(() => {
+        this.setState({
+					isLoading: false,
+					editPhotoMode:false
+        })
 
-  //     })
-  //     .then(() => {
-  //       this.setState({
-  //         isLoading: false
-  //       })
-
-  //       window.setTimeout(() => {
-  //         this.props.messageHide()
-  //       }, 5000)
-  //     })
-  // }
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+			})
+  }
 
 	onSubmit = () => {
 			let newDetails = {
@@ -101,20 +106,36 @@ class ProfileDetails extends Component {
 				address: this.state.address
 			}
 			this.props.editDetails(newDetails)
-				// .then(response => {
-				// 	console.log(response)
-				// 	this.setState({ email: email ,editMode: false })
-				// })
-			this.setState({ editMode: false })
+				.then(response => {
+					this.props.getDetails(response.data.data.userUpdate)
+					this.setState({
+						email: response.data.data.userUpdate.email,
+						editMode: false,
+						address: response.data.data.userUpdate.address,
+						description: response.data.data.userUpdate.description
+					})
+				})
+		}
+
+		openUpload = () => {
+			this.setState({editPhotoMode:true})
 		}
 
 	render() {
 		return (
 			<section style={{display: 'flex'}}>
 				<div style={{ padding: '2em' }}>
-				<img src={'/images/Profile.png'} style={{width: '10em'}}
-				/>
-				<img onClick={this.onUpload} src={'/images/Pencil.png'} style={{width:'2em', borderRadius:'5em', position: 'relative', bottom: '1em', right: '3.3em'}} />
+					<div style={{display: 'flex', flexFlow:'column'}}>
+					{this.state.image === '' ? <img  src={'/images/Profile.png'} style={{width: '10em'}}/> : <img src={routeImage + this.state.image} style={{width: '10em', borderRadius:'50%', height:'10em'}} />}
+						
+
+						{this.state.image === '' ? 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{ width: '2em', position:'relative',bottom: '3em',left: '7em'}} /> : 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{width:'2em', position: 'relative',left:'8em', bottom: '1.5em'}} />}
+			
+
+
+					{this.state.editPhotoMode && <input type= "file" onChange={this.onUpload}>
+					</input>}
+					</div>
 
 
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
@@ -160,9 +181,9 @@ class ProfileDetails extends Component {
 						:
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-							<H4>{this.props.user.details.description}</H4>
-							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.email}</p>
-							<p style={{ color: grey2, margin: '1em' }}>{this.props.user.details.address}</p>
+							<p style={{margin:'1em'}}>{this.state.description}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
+							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
 					}
 				</div>
@@ -187,5 +208,9 @@ function profileDetailsState(state) {
 
 export default connect(profileDetailsState, {
 	editDetails,
-	messageShow
+	messageShow, 
+	getDetails,
+	upload,
+	messageHide,
+	getPhoto
 })(ProfileDetails)
