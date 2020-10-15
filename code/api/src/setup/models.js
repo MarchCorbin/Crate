@@ -9,7 +9,8 @@ const models = {
   Product: databaseConnection.import('../modules/product/model'),
   Crate: databaseConnection.import('../modules/crate/model'),
   Subscription: databaseConnection.import('../modules/subscription/model'),
-  Order: databaseConnection.import('../modules/orders/model')
+  Order: databaseConnection.import('../modules/orders/model'),
+  OrderProduct: databaseConnection.import('../modules/orderProduct/model')
 }
 
 Object.keys(models).forEach(modelName => {
