@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER
         },
         shippingDate: {
-            type: DataTypes.Date
+            type: DataTypes.DATE
         },
         crateId: {
             type: DataTypes.INTEGER
