@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 // UI Imports
-import { H3, H4 } from '../../ui/typography'
+import { H4 } from '../../ui/typography'
 import Button from '../../ui/button'
 import { Input } from '../../ui/input'
 import { grey2 } from '../../ui/common/colors'
 
 // App Imports
 import { editDetails, getDetails } from './api/actions'
-import { messageShow, messageHide, upload} from '../common/api/actions'
+import { messageShow, messageHide, upload } from '../common/api/actions'
 import { routeImage } from "../../setup/routes/index.js"
 
 // Component
@@ -88,7 +88,6 @@ class ProfileDetails extends Component {
       })
       .catch(error => {
         this.props.messageShow('There was some error. Please try again.')
-
       })
       .then(() => {
         this.setState({
@@ -122,31 +121,30 @@ class ProfileDetails extends Component {
 		}
 
 		openUpload = () => {
-			this.setState({editPhotoMode:true})
+			this.setState({ editPhotoMode:true })
 		}
 
 	render() {
 		return (
-			<section style={{display: 'flex'}}>
+			<section style={{ display: 'flex' }}>
 				<div style={{ padding: '2em' }}>
-					<div style={{display: 'flex', flexFlow:'column'}}>
-					{this.state.image === '' ? <img  src={'/images/Profile.png'} style={{width: '10em'}}/> : <img src={routeImage + this.state.image} style={{width: '10em', borderRadius:'50%', height:'10em'}} />}
-
-
-						{this.state.image === '' ? 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{ width: '2em', position:'relative',bottom: '3em',left: '7em'}} /> : 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{width:'2em', position: 'relative',left:'8em', bottom: '1.5em'}} />}
-
-
-
+					<div style={{ display: 'flex', flexFlow: 'column' }}>
+					{this.state.image === ''
+					? <img src={ '/images/Profile.png' } style={{ width: '10em' }}/>
+					: <img src={ routeImage + this.state.image } style={{ width: '10em', borderRadius: '50%', height: '10em'}} />}
+						
+					{this.state.image === ''
+					? <img onClick={ this.openUpload } src={ '/images/Pencil.png' } style={{ width: '2em', position: 'relative', bottom: '3em', left: '7em' }} />
+					: <img onClick={ this.openUpload } src={ '/images/Pencil.png' } style={{ width:'2em', position: 'relative', left: '8em', bottom: '1.5em' }} />}
+			
 					{this.state.editPhotoMode && <input type= "file" onChange={this.onUpload}>
 					</input>}
 					</div>
 
-
 					<H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
 					{this.state.editMode
-						?
-						<>
+					? <>
 							<Input
 								type="text"
 								fullWidth={true}
@@ -156,7 +154,7 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.description}
 								onChange={this.onChange}
-								style={{width:'33vw', float: 'left'}}
+								style={{ width:'33vw', float: 'left' }}
 								/>
 							<Input
 								type="text"
@@ -167,7 +165,7 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.email}
 								onChange={this.onChange}
-								style={{width:'33vw', float: 'left'}}
+								style={{ width:'33vw', float: 'left' }}
 							/>
 							<Input
 								type="text"
@@ -178,14 +176,14 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.address}
 								onChange={this.onChange}
-								style={{width:'33vw', float: 'left'}}
+								style={{ width:'33vw', float: 'left' }}
 							/>
 							<Button theme="primary" onClick={this.onSubmit} style={{ margin: '1em' }}>Save Changes</Button>
 						</>
-						:
+					:
 						<>
 							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-							<p style={{margin:'1em'}}>{this.state.description}</p>
+							<p style={{ margin:'1em' }}>{this.state.description}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
@@ -194,7 +192,6 @@ class ProfileDetails extends Component {
 			</section>
 		)
 	}
-
 }
 
 // Component Properties
