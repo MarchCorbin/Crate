@@ -2,11 +2,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
 
 // UI Imports
-import { Grid, GridCell } from '../../ui/grid'
 import { H3, H4 } from '../../ui/typography'
 import Button from '../../ui/button'
 import { Input, Textarea } from '../../ui/input'
@@ -17,7 +14,6 @@ import userRoutes from '../../setup/routes/user'
 import { editDetails, getDetails, getPhoto } from './api/actions'
 import { messageShow, messageHide, upload} from '../common/api/actions'
 import { routeImage } from "../../setup/routes/index.js"
-import { renderIf } from '../../setup/helpers'
 
 // Component
 class ProfileDetails extends Component {
@@ -36,10 +32,10 @@ class ProfileDetails extends Component {
 
 
 
-	componentDidMount = () => {
-		console.log(this.props.user.image)
+	componentDidMount = async() => {
+		console.log(this.props, 'iamprops')
 		const userDetails = this.props.user.details
-		this.setState({
+		await this.setState({
 			description: userDetails.description,
 			email: userDetails.email,
 			address: userDetails.address,
@@ -87,8 +83,7 @@ class ProfileDetails extends Component {
         }
       })
       .catch(error => {
-				console.log(error, 'iamcatcherror')
-        // this.props.messageShow('There was some error. Please try again.')
+        this.props.messageShow('There was some error. Please try again.')
 
       })
       .then(() => {
@@ -148,13 +143,6 @@ class ProfileDetails extends Component {
 					{this.state.editMode
 						?
 						<>
-						  {/* <div style={{ marginTop: '1em', background: 'green' }}> */}
-                    {/* <input
-                      type="file" */}
-                      {/* // onChange={this.onUpload}
-                      // required={this.state.product.id === 0}
-                    />
-                  </div> */}
 							<Input
 								type="text"
 								fullWidth={true}
