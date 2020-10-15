@@ -149,3 +149,19 @@ export function getPhoto(image) {
   }
 }
 
+// // Edit user details
+// export function editDetails(newDetails) {
+// 	return dispatch => {
+// 		return axios.post(routeApi, mutation({
+// 			operation: 'userUpdate',
+// 			variables: newDetails,
+// 			fields: ['name', 'description', 'email', 'address']}
+//     ))
+//     .then(response => {
+//       dispatch({
+//         type: GET_USER_DETAILS,
+//         response
+//       })
+//     })
+//   }
+// }
