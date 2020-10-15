@@ -7,6 +7,7 @@ import express from 'express';
 // set up your graphql middleware
 import graphqlHTTP from 'express-graphql';
 import schema from '../../../setup/schema';
+import models from '../../../setup/models';
 
 describe("user mutations", () => {
 
@@ -23,53 +24,42 @@ describe("user mutations", () => {
       })
     );
 
-    // const gaby = User.create({
-    //     name: 'Gaby Mendez',
-    //     email: 'gaby@crate.com',
-    //     password: bcrypt.hashSync('password', config.saltRounds),
-    //     role: params.user.roles.user,
-    //     createdAt: new Date(),
-    //     updatedAt: new Date()
-    //   });
-
+    const gaby = models.User.create({
+        name: 'Gaby Mendez',
+        email: 'gaby@crate.com',
+        password: 'password',
+        role: "USER",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      });
   })
 
   // using async and await
-  xit("user - returns user with specific id", async() => {
+  it("user - returns user with specific id", async() => {
     const response = await request(server)
       .post('/')
-      .send({ query: '{ user(id: 2) { name email }}'})
+      .send({ query: '{ user(id: 3) { name email }}'})
       .expect(200)
 
-    // console.log(response.body)
-    expect(response.body.data.user.name).toEqual('The User')
+    console.log(response.body)
+    expect(response.body.data.user.name).toEqual('Gaby Mendez')
   })
 
-  // using the promise way
-  xit("user - returns user with specific id", () => {
-    return request(server)
-      .post('/')
-      .send({ query: '{ user(id: 2) { name email }}'})
-      .expect(200)
-      .then(response => {
-        expect(response.body.data.user.name).toEqual('The User')
-      })
-  })
-
-  test("user - returns user with specific id", done => {
-    request(server)
-      .post('/')
-      .send({ query: '{ user(id: 2) { name email }}'})
-      .expect(200)
-      .then(response => {
-        expect(response.body.data.user.name).toEqual('The User');
-        done();
-      })
-  })
+  // const token = async() => {
+  //   const response = await request(server)
+  //     .post('/')
+  //     .send({ query: '{ userLogin(email: "gaby@crate.com", password: "password", role: "USER") { token }}'})
+  //     .expect(200)
+  //
+  //     console.log(response.body)
+  // };
 
   xit("updateUser - updates user profile info", async() => {
     const response = await request(server)
       .post('/')
+      .headers({
+        'Authorization': 'Bearer'
+      })
       .send({ mutation: '{ userUpdate(description: "description", email: "gaby@hotmail.com") {name email description address }}'})
       .expect(200)
 
