@@ -49,12 +49,6 @@ export default (state = userInitialState, action) => {
         details: action.user
       }
 
-    case GET_USER_PHOTO:
-      return {
-        ...state,
-        image: action.image
-      }
-
     default:
       return state
   }
