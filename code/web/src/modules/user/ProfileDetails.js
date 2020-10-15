@@ -68,7 +68,7 @@ class ProfileDetails extends Component {
 
 					let image = this.state.image
 					image = `/images/uploads/${ response.data.file }`
-				
+
 					let newDetails = {
 						name: this.props.user.details.name,
 						description: this.state.description,
@@ -131,10 +131,10 @@ class ProfileDetails extends Component {
 				<div style={{ padding: '2em' }}>
 					<div style={{display: 'flex', flexFlow:'column'}}>
 					{this.state.image === '' ? <img  src={'/images/Profile.png'} style={{width: '10em'}}/> : <img src={routeImage + this.state.image} style={{width: '10em', borderRadius:'50%', height:'10em'}} />}
-						
+
 
 						{this.state.image === '' ? 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{ width: '2em', position:'relative',bottom: '3em',left: '7em'}} /> : 	<img onClick={this.openUpload} src={'/images/Pencil.png'} style={{width:'2em', position: 'relative',left:'8em', bottom: '1.5em'}} />}
-			
+
 
 
 					{this.state.editPhotoMode && <input type= "file" onChange={this.onUpload}>
@@ -212,7 +212,7 @@ function profileDetailsState(state) {
 
 export default connect(profileDetailsState, {
 	editDetails,
-	messageShow, 
+	messageShow,
 	getDetails,
 	upload,
 	messageHide

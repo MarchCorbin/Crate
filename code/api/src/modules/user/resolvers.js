@@ -97,3 +97,6 @@ export async function update(parentValue, { name, description, email, address, i
     throw new Error('Could not update user.')
   }
 }
+
+// Resolver for ordersByUser that returns an array of products
+// for a given order as well in the 'include' block.
