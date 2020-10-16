@@ -19,6 +19,7 @@ const OrderType = new GraphQLObjectType({
     product: { type: new GraphQLList(ProductType) },
     orderProduct: { type: new GraphQLList(OrderProductType)},
     shippingDate: { type: GraphQLString },
+    products: { type: GraphQLList(ProductType) },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString }
   })
