@@ -9,7 +9,7 @@ const models = {
   Product: databaseConnection.import('../modules/product/model'),
   Crate: databaseConnection.import('../modules/crate/model'),
   Subscription: databaseConnection.import('../modules/subscription/model'),
-  Order: databaseConnection.import('../modules/orders/model'),
+  Order: databaseConnection.import('../modules/order/model'),
   OrderProduct: databaseConnection.import('../modules/orderProduct/model')
 }
 
