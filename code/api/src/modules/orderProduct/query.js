@@ -3,10 +3,13 @@ import { GraphQLInt, GraphQLList } from 'graphql'
 
 // App Imports
 import ProductType from './types'
-import { getProductsByOrder } from './resolvers'
+import { getProducts } from './resolvers'
 
 // orderProduct by order
-export const orderProductsByOrder = {
+export const orderProductsByOrderId = {
   type: new GraphQLList(ProductType),
-  resolve: getProductsByOrder
+  args: {
+    order_id: { type: GraphQLInt }
+  },
+  resolve: getProducts
 }
