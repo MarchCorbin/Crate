@@ -22,7 +22,6 @@ export async function getByUser(parentValue, {}, { auth }) {
       include: [
         {model: models.User, as: 'user'},
         {model: models.Crate, as: 'crate'},
-        {model: models.Product, as: 'product'}
       ]
     })
   } else {
