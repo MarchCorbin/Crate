@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLDate, GraphQLList, GraphQLBoolean } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLDate, GraphQLList } from 'graphql'
 
 // App Imports
 // import { UserType } from '../user/types'
@@ -16,8 +16,6 @@ const OrderProductType = new GraphQLObjectType({
 
   fields: () => ({
     id: { type: GraphQLInt },
-    kept: {type: GraphQLBoolean},
-    // productId: { type: GraphQLInt },
     product: { type: ProductType },
     order: { type: OrderType }
   })

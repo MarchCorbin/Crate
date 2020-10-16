@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
 
         Order.hasMany(models.OrderProduct, { as: 'orderProduct'})
 
-        // Order.belongsToMany(models.Product, { through: models.OrderProduct })
+        Order.belongsToMany(models.Product, { through: models.OrderProduct })
     }
 
     return Order
