@@ -6,7 +6,7 @@ import request from 'supertest';
 import express from 'express';
 // set up your graphql middleware
 import graphqlHTTP from 'express-graphql';
-import schema from '../../setup/schema';
+import schema from '../../../setup/schema';
 
 describe("user queries", () => {
   // this variable needs to be outside of the beforeAll block
@@ -43,15 +43,6 @@ describe("user queries", () => {
 
     console.log(response.body)
     expect(response.body.data.user.name).toEqual('The Admin')
-  })
-
-  xit("updateUser - updates user profile info", async() => {
-    const response = await request(server)
-      .post('/')
-      .send()
-      .expect(200)
-
-    expect(response.body.data.user.name).toEqual('')
   })
 
   // TEST TEARDOWN

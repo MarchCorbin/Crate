@@ -13,10 +13,11 @@
     "start:prod": "npm run build:prod && npm run start:server",
     "build:prod": "babel src -s -D -d build",
     "start:server": "node build/index.js",
-    "test": "jest --watch",
+    "test": "jest --watch --runInBand --detectOpenHandles",
     "db:migration:undo:all": " ./node_modules/.bin/sequelize db:migrate:undo:all",
     "db:seed:undo:all": " ./node_modules/.bin/sequelize db:seed:undo:all",
-    "db:seed:force": "npm run db:seed:undo:all && npm run db:migration:undo:all && npm run setup:db"
+    "db:seed:force": "npm run db:seed:undo:all && npm run db:migration:undo:all && npm run setup:db",
+    "test:db": "NODE_ENV=test npm run db:migration:undo:all && NODE_ENV=test npm run db:migrate"
   },
   "keywords": [],
   "author": "",
