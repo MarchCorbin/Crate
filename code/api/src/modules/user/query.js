@@ -47,5 +47,3 @@ export const userGenders = {
   type: new GraphQLList(UserGenderType),
   resolve: getGenders
 }
-
-// Orders by User
