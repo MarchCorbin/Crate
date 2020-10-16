@@ -131,11 +131,6 @@ export function editDetails(newDetails) {
 	}
 }
 
-// Edit user image, write new function here!!
-// export function editImage(image) {
-//
-// }
-
 export function getDetails(user) {
   return dispatch => {
      dispatch({
