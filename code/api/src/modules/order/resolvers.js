@@ -21,7 +21,9 @@ export async function getByUser(parentValue, {}, { auth }) {
       },
       include: [
         {model: models.User, as: 'user'},
-        {model: models.Crate, as: 'crate'},
+        {model: models.Crate, as: 'crate'}
+        // {model: models.OrderProduct, as: 'product'}
+        // error: "orderProducts is not associated to orders!"
       ]
     })
   } else {
