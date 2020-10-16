@@ -1,6 +1,6 @@
 'use strict'
 
-// User
+// Order
 module.exports = function(sequelize, DataTypes) {
     let Order = sequelize.define('orders', {
         userId: {

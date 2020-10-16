@@ -134,7 +134,7 @@ export function editDetails(newDetails) {
 export function getDetails(user) {
   return dispatch => {
      dispatch({
-       type: GET_USER_DETAILS, 
+       type: GET_USER_DETAILS,
        user
       })
   }
