@@ -18,6 +18,8 @@ module.exports = function(sequelize, DataTypes) {
         OrderProduct.belongsTo(models.Product)
         OrderProduct.belongsTo(models.Order, { foreignKey: 'orderId'})
 
+        OrderProduct.hasMany(models.Product, { as: 'products'})
+
         // OrderProduct.hasOne(models.Product)
     }
 
