@@ -1,15 +1,21 @@
-import * as actions from './actions';
+import * as actions from './actions'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
+const store = mockStore()
 
 describe('actions', () => {
-  it.skip('should have a type of GET_USER_DETAILS', () => {
-    const user = { name: "ABC" }
+  it('should have a type of GET_USER_DETAILS', () => {
+		const user = { name: "ABC" }
+		
     const expectedAction = {
-      type: 'AUTH/GET_USER_DETAILS',
+			type: 'AUTH/GET_USER_DETAILS',
       user: { name: "ABC" }
     }
-
-    const result = actions.getDetails(user)
-
-    expect(result).toEqual(expectedAction)
-  });
-});
+		
+		store.dispatch(actions.getDetails(user))
+		expect(store.getActions()).toEqual([expectedAction])
+  })
+})
