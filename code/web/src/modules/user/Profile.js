@@ -42,9 +42,10 @@ const Profile = (props) => (
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>
     </Grid>
-
+    <div style={{display:'flex', justifyContent: 'space-evenly'}}>
 		<ProfileDetails />
 		<OrderHistory />
+    </div>
   </div>
 )
 
