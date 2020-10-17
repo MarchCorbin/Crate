@@ -3,26 +3,61 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Order from './Order.js'
 
+// UI Imports
 import { H3 } from '../../ui/typography'
+
+// App Imports
+import { getOrderHistory } from './api/actions.js'
 
 // Component
 class OrderHistory extends Component {
 	constructor() {
 		super()
 		this.state = {
-
+			orders: {
+				"data": {
+					"ordersByUser": [
+						{
+							"shippingDate": "1605461630039",
+							"products": [
+								{
+									"name": "T-Shirt for Women - Grey",
+									"image": "/images/stock/t-shirt-female-2.jpg"
+								},
+								{
+									"name": "T-Shirt for Men - Grey",
+									"image": "/images/stock/t-shirt-male-2.jpg"
+								}
+							]
+						},
+						{
+							"shippingDate": "1605461630039",
+							"products": [
+								{
+									"name": "Belt for Men",
+									"image": "/images/stock/belt-male.jpg"
+								}
+							]
+						}
+					]
+				}
+			}
 		}
 	}
 
-	mapOrders = () => {
-		return (<Order />)
+	componentDidMount = () => {
+		// this.props.getOrderHistory()
+		// 	.then(response => {
+		// 		console.log(response)
+		// 	})
 	}
 
-	
-	// call the action creator with post request here
-	// store the data returned in a variable
-	// map over data, return an Order component for each item
-	// display this in section below
+	createOrderList = () => {
+		return this.state.orders.data.ordersByUser.map((order, i) => {
+			return (<Order order={order} key={i}/>)
+		})
+	}
+
 	render() {
 		return (
 			<section 
@@ -31,12 +66,12 @@ class OrderHistory extends Component {
 					flexDirection: 'column',
 					border: '2px solid black',
 					width: '55vw',
-					height: '40vh',
+					height: '50vh',
 					alignSelf: 'flex-end',
-					overflow:'scroll'
+					overflow: 'scroll'
 				}}>
-				<H3 style={{margin:'.3em'}}>Order History</H3>	
-				{this.mapOrders()}
+				<H3 style={{ margin: '.3em' }}>Order History</H3>	
+				{this.createOrderList()}
 			</section>
 		)
 	}
@@ -49,4 +84,6 @@ function orderHistoryState(state) {
 	}
 }
 
-export default connect(null, {  })(OrderHistory)
+export default connect(null, { 
+	getOrderHistory
+ })(OrderHistory)
