@@ -9,16 +9,19 @@ Brownfield project for Turing students to collaborate on as a full-stack team in
 
 Original **Crate Repo** [README](https://github.com/turingschool/Crate)
 
-### Team Members
+### About
+
+Crate is a platform, similar to Stitch Fix, that allows users to setup monthly subscriptions to receive trendy clothes and accessories.
+
+### Technologies Used
+
 **Front End**
-* [Erin Untermeyer](https://github.com/ErinUntermeyer)
-* [Nicole Latifi](https://github.com/NicoleLatifi)
-* [Corbin March](https://github.com/MarchCorbin)
+- React
+- Redux
 
 **Back End**
-* [Kwibe Merci](https://github.com/jKwibe)
-* [Gaby Mendez](https://github.com/gabichuelas)
-* [Ryan Laleh](https://github.com/RyN21)
+- GraphQL
+- Sequelize
 
 ### Prerequisites and Setup Instructions
 **Prerequisites**
@@ -58,6 +61,21 @@ Configuring your $PATH variable
 ![graphql_schema](https://user-images.githubusercontent.com/62727545/95487041-cf571300-0961-11eb-9728-bf0bf1b76931.png)
 ### Database Schema
 ![Database Schema](https://user-images.githubusercontent.com/46441816/96352562-3de25200-1081-11eb-945e-f583ed311ffd.png)
+
+### Future Iterations
+- Display the delivery date on the subscription card and allow the user to edit the date as needed
+- Integrate the Twitter API so users can tweet which clothes they have purchased
+
+### Contributors
+**Front End**
+* [Erin Untermeyer](https://github.com/ErinUntermeyer)
+* [Nicole Latifi](https://github.com/NicoleLatifi)
+* [Corbin March](https://github.com/MarchCorbin)
+
+**Back End**
+* [Kwibe Merci](https://github.com/jKwibe)
+* [Gaby Mendez](https://github.com/gabichuelas)
+* [Ryan Laleh](https://github.com/RyN21)
 
 [contributors-shield]: https://img.shields.io/github/contributors/gabichuelas/crate.svg?style=flat-square
 [contributors-url]: https://github.com/gabichuelas/crate/graphs/contributors
