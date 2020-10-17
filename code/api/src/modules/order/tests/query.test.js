@@ -12,10 +12,9 @@ import serverConfig from "../../../config/server.json";
 import authentication from "../../../setup/authentication";
 
 describe("user queries", () => {
-  // this variable needs to be outside of the beforeAll block
-  // in javascript. In Ruby it wouldn't matter.
+
   let server;
-  // test setup
+
   beforeAll( async () => {
 
     let userData = await models.User.findOne({where: {email: 'user@crate.com'}})
@@ -39,6 +38,7 @@ describe("user queries", () => {
     );
   })
 
+  // Ryan - Need to get this test working!!
   xit("ordersByUser - returns all orders and product names in them for a given user", async () => {
     const response = await request(server)
       .post('/')
