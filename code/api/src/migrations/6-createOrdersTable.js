@@ -1,5 +1,7 @@
 'use strict';
 
+  let date = new Date();
+  let shipmentDate = new Date(date.valueOf() + date.getTimezoneOffset() + 30 * 24 * 60 * 60 * 1000);
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('orders', {
@@ -29,7 +31,8 @@ module.exports = {
       },
       shippingDate: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: shipmentDate
       },
       createdAt: {
         allowNull: false,
