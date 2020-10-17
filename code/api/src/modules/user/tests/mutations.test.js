@@ -26,13 +26,13 @@ describe("user mutations", () => {
         const passwordHashed = await bcrypt.hash("password", serverConfig.saltRounds)
 
         await models.User.create({
-            name: 'Gaby Mendez',
-            email: 'gaby@crate.com',
+            name: 'Crate User',
+            email: 'user@crate.com',
             password: passwordHashed,
             role: "USER"
         });
 
-        let userData = await models.User.findOne({where: {email: 'gaby@crate.com'}})
+        let userData = await models.User.findOne({where: {email: 'user@crate.com'}})
         USER = userData.get();
 
         server = express();
@@ -57,7 +57,7 @@ describe("user mutations", () => {
 
         const response = await request(server)
             .post('/')
-            .send({ query: '{ userLogin(email: "gaby@crate.com", password: "password") { token }}'})
+            .send({ query: '{ userLogin(email: "user@crate.com", password: "password") { token }}'})
             .expect(200)
 
         token = response.body.data.userLogin.token
@@ -86,7 +86,7 @@ describe("user mutations", () => {
     // };
 
     it("updateUser - updates user profile info", async(done) => {
-        let email = 'gaby@hotmail.com'
+        let email = 'user@hotmail.com'
         let description = 'description'
         const response = await request(server)
             .post('/')
@@ -94,8 +94,8 @@ describe("user mutations", () => {
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
 
-        expect(response.body.data.userUpdate.description).toEqual("description")
-        expect(response.body.data.userUpdate.email).toEqual("gaby@hotmail.com")
+        expect(response.body.data.userUpdate.description).toEqual(description)
+        expect(response.body.data.userUpdate.email).toEqual(email)
         done();
     })
 })
