@@ -155,6 +155,7 @@ class ProfileDetails extends Component {
 								value={this.state.description}
 								onChange={this.onChange}
 								style={{ width:'33vw', float: 'left' }}
+								maxLength="200"
 								/>
 							<Input
 								type="text"
@@ -165,7 +166,7 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.email}
 								onChange={this.onChange}
-								style={{ width:'33vw', float: 'left' }}
+								style={{ width: '33vw', float: 'left' }}
 							/>
 							<Input
 								type="text"
@@ -176,14 +177,14 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.address}
 								onChange={this.onChange}
-								style={{ width:'33vw', float: 'left' }}
+								style={{ width: '33vw', float: 'left' }}
 							/>
 							<Button theme="primary" onClick={this.onSubmit} style={{ margin: '1em' }}>Save Changes</Button>
 						</>
 					:
 						<>
-							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em', width:'22em' }}>Edit All</Button>
-							<p style={{ margin:'1em'}}>{this.state.description}</p>
+							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
+							<p style={{ margin: '1em', width: '22em' }}>{this.state.description}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
