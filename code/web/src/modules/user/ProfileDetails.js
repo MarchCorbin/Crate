@@ -102,6 +102,9 @@ class ProfileDetails extends Component {
   }
 
 	onSubmit = () => {
+		if (this.state.email === '') {
+			this.props.messageShow('Email is a required field. Please add an email address and try again.')
+		} else {
 			let newDetails = {
 				name: this.props.user.details.name,
 				description: this.state.description,
@@ -119,6 +122,7 @@ class ProfileDetails extends Component {
 					})
 				})
 		}
+	}
 
 		openUpload = () => {
 			this.setState({ editPhotoMode:true })
@@ -160,7 +164,7 @@ class ProfileDetails extends Component {
 							<Input
 								type="text"
 								fullWidth={true}
-								placeholder={this.state.email}
+								placeholder={this.state.email || 'Email'}
 								required="required"
 								name="email"
 								autoComplete="off"
