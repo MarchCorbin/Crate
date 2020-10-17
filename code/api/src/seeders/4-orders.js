@@ -2,6 +2,7 @@
 let date = new Date();
 
 let shipmentDate = new Date(date.valueOf() + date.getTimezoneOffset() + 30 * 24 * 60 * 60 * 1000);
+let shipmentDate2 = new Date(date.valueOf() + date.getTimezoneOffset() + 60 * 24 * 60 * 60 * 1000);
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('orders', [
@@ -13,12 +14,12 @@ module.exports = {
                 updatedAt: new Date()
             },
             {
-                crateId: 4,
+                crateId: 3,
                 userId: 2,
-                shippingDate: shipmentDate,
+                shippingDate: shipmentDate2,
                 createdAt: new Date(),
                 updatedAt: new Date()
-            },
+            }
         ], {})
     },
 
