@@ -130,7 +130,11 @@ class ProfileDetails extends Component {
 
 	render() {
 		return (
-			<section style={{ display: 'flex' }}>
+			<section style={{
+				display: 'flex',
+				boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)',
+				backgroundColor: 'rgb(255, 255, 255)'
+			}}>
 				<div style={{ padding: '2em' }}>
 					<div style={{ display: 'flex', flexFlow: 'column' }}>
 					{this.state.image === ''
@@ -158,7 +162,7 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.description}
 								onChange={this.onChange}
-								style={{ width:'33vw', float: 'left' }}
+								style={{ width:'22em', float: 'left' }}
 								maxLength="200"
 								/>
 							<Input
@@ -170,7 +174,7 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.email}
 								onChange={this.onChange}
-								style={{ width: '33vw', float: 'left' }}
+								style={{ width: '22em', float: 'left' }}
 							/>
 							<Input
 								type="text"
@@ -181,16 +185,16 @@ class ProfileDetails extends Component {
 								autoComplete="off"
 								value={this.state.address}
 								onChange={this.onChange}
-								style={{ width: '33vw', float: 'left' }}
+								style={{ width: '22em', float: 'left' }}
 							/>
 							<Button theme="primary" onClick={this.onSubmit} style={{ margin: '1em' }}>Save Changes</Button>
 						</>
 					:
 						<>
-							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-							<p style={{ margin: '1em', width: '22em' }}>{this.state.description}</p>
-							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
-							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
+							<p style={{ margin: '1em 0 1em 0' , width: '22em' }}>{this.state.description}</p>
+							<p style={{ color: grey2, margin: '1em 0 1em 0' }}>{this.state.email}</p>
+							<p style={{ color: grey2, margin: '1em 0 1em 0' }}>{this.state.address}</p>
+							<Button theme="secondary" onClick={this.onClick} 	>Edit All</Button>
 						</>
 					}
 				</div>
