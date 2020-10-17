@@ -30,7 +30,7 @@ const convertMonth = () => {
 }
 
 return(	
-	<div style={{ display: 'flex', flexFlow: 'column', overflowX: 'scroll', minHeight: '19vh', width: 'fit-content' }}>
+	<div style={{ display: 'flex', flexFlow: 'column', overflow: 'visible', minHeight: '19vh'}}>
 			<H5 style={{margin:'.5em 1em .5em 1em'}}>{convertMonth()}</H5>
 			<div style={{display:'flex', margin:'.5em', justifyContent:'space-evenly'}}>
 			{createProductList()}
