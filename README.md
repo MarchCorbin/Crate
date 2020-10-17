@@ -1,3 +1,8 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 ## Crate
 
 Brownfield project for Turing students to collaborate on as a full-stack team in Mod4. This team was assigned the _Improving UX and Community [Track](https://mod4.turing.io/projects/crate/crate_project_tracks.html)_
@@ -53,3 +58,12 @@ Configuring your $PATH variable
 ![graphql_schema](https://user-images.githubusercontent.com/62727545/95487041-cf571300-0961-11eb-9728-bf0bf1b76931.png)
 ### Database Schema
 ![crate-schema](https://user-images.githubusercontent.com/46441816/95492567-82bb0a00-0958-11eb-8c95-4095aa0c93a3.png)
+
+[contributors-shield]: https://img.shields.io/github/contributors/gabichuelas/crate.svg?style=flat-square
+[contributors-url]: https://github.com/gabichuelas/crate/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/gabichuelas/crate.svg?style=flat-square
+[forks-url]: https://github.com/gabichuelas/crate/network/members
+[stars-shield]: https://img.shields.io/github/stars/gabichuelas/crate.svg?style=flat-square
+[stars-url]: https://github.com/gabichuelas/crate/stargazers
+[issues-shield]: https://img.shields.io/github/issues/gabichuelas/crate.svg?style=flat-square
+[issues-url]: https://github.com/gabichuelas/crate/issues
