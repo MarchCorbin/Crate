@@ -45,4 +45,4 @@ Configuring your $PATH variable
 ### GraphQL Schema
 ![graphql_schema](https://user-images.githubusercontent.com/62727545/95487041-cf571300-0961-11eb-9728-bf0bf1b76931.png)
 ### Database Schema
-![crate-schema](https://user-images.githubusercontent.com/46441816/95492567-82bb0a00-0958-11eb-8c95-4095aa0c93a3.png)
+![Database Schema](https://user-images.githubusercontent.com/46441816/96352562-3de25200-1081-11eb-945e-f583ed311ffd.png)
