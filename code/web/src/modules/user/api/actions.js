@@ -12,7 +12,7 @@ export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
 export const GET_USER_DETAILS = 'AUTH/GET_USER_DETAILS'
-export const GET_USER_PHOTO = 'AUTH/GET_USER_PHOTO'
+export const GET_ORDER_HISTORY = 'AUTH/GET_ORDER_HISTORY'
 
 // Actions
 
@@ -141,13 +141,18 @@ export function getDetails(user) {
   }
 }
 
-// Get user orders
+// Get order history
 export function getOrderHistory() {
 	return dispatch => {
 		return axios.post(routeApi, query({
 			operation: 'ordersByUser',
-			fields: ['shippingDate']
-		}
-		))
+			fields: ['shippingDate', 'products{ name image }']
+		}))
+			.then(response => {
+				dispatch({
+					type: GET_ORDER_HISTORY,
+					orders: response.data.data.ordersByUser
+				})
+			})
 	}
 }

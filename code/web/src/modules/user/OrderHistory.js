@@ -11,49 +11,16 @@ import { getOrderHistory } from './api/actions.js'
 
 // Component
 class OrderHistory extends Component {
-	constructor() {
-		super()
-		this.state = {
-			orders: {
-				"data": {
-					"ordersByUser": [
-						{
-							"shippingDate": "1605461630039",
-							"products": [
-								{
-									"name": "T-Shirt for Women - Grey",
-									"image": "/images/stock/t-shirt-female-2.jpg"
-								},
-								{
-									"name": "T-Shirt for Men - Grey",
-									"image": "/images/stock/t-shirt-male-2.jpg"
-								}
-							]
-						},
-						{
-							"shippingDate": "1605461630039",
-							"products": [
-								{
-									"name": "Belt for Men",
-									"image": "/images/stock/belt-male.jpg"
-								}
-							]
-						}
-					]
-				}
-			}
-		}
+	constructor(props) {
+		super(props)
 	}
 
 	componentDidMount = () => {
-		// this.props.getOrderHistory()
-		// 	.then(response => {
-		// 		console.log(response)
-		// 	})
+		this.props.getOrderHistory()
 	}
 
 	createOrderList = () => {
-		return this.state.orders.data.ordersByUser.map((order, i) => {
+		return this.props.user.orders.map((order, i) => {
 			return (<Order order={order} key={i}/>)
 		})
 	}
@@ -64,13 +31,15 @@ class OrderHistory extends Component {
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
-					border: '2px solid black',
 					width: '55vw',
 					height: '50vh',
-					alignSelf: 'flex-end',
-					overflow: 'scroll'
+					alignSelf: 'flex-start',
+					overflow: 'scroll',
+					boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)',
+					backgroundColor: 'rgb(255, 255, 255)',
+					padding: '1em'
 				}}>
-				<H3 style={{ margin: '.3em' }}>Order History</H3>	
+				<H3>Order History</H3>	
 				{this.createOrderList()}
 			</section>
 		)
@@ -80,10 +49,10 @@ class OrderHistory extends Component {
 // Component State
 function orderHistoryState(state) {
 	return {
-		// user: state.user
+		user: state.user
 	}
 }
 
-export default connect(null, { 
+export default connect(orderHistoryState, { 
 	getOrderHistory
  })(OrderHistory)

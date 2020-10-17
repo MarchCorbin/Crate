@@ -7,6 +7,7 @@ import { H5 } from '../../ui/typography'
 
 // App Imports
 import { routeImage } from '../../setup/routes'
+import { APP_URL_API } from '../../setup/config/env'
 
 // Component
 const Order = ({ order }) => {
@@ -22,9 +23,16 @@ const createProductList = () => {
 	})
 }
 
+const convertMonth = () => {
+	const given = order.shippingDate
+	const updateDate = new Date(+given);
+	const longMonth = updateDate.toLocaleString('en-us', { month: 'long' });
+	return longMonth
+}
+
 return(	
-	<div style={{ display: 'flex', flexFlow: 'column', border: '1px solid green', overflowX: 'scroll', minHeight: '19vh', width: 'fit-content' }}>
-			<H5 style={{margin:'.3em'}}>this.props.month</H5>
+	<div style={{ display: 'flex', flexFlow: 'column', overflowX: 'scroll', minHeight: '19vh', width: 'fit-content' }}>
+			<H5 style={{margin:'.5em 1em .5em 1em'}}>{convertMonth()}</H5>
 			<div style={{display:'flex', margin:'.5em', justifyContent:'space-evenly'}}>
 			{createProductList()}
 			</div>
