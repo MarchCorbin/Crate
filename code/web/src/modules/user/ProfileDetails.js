@@ -182,8 +182,8 @@ class ProfileDetails extends Component {
 						</>
 					:
 						<>
-							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em' }}>Edit All</Button>
-							<p style={{ margin:'1em' }}>{this.state.description}</p>
+							<Button theme="secondary" onClick={this.onClick} style={{ marginLeft: '1em', width:'22em' }}>Edit All</Button>
+							<p style={{ margin:'1em'}}>{this.state.description}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.email}</p>
 							<p style={{ color: grey2, margin: '1em' }}>{this.state.address}</p>
 						</>
