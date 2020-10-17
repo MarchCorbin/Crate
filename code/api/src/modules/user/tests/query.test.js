@@ -21,15 +21,15 @@ describe("user queries", () => {
     const passwordHashed = await bcrypt.hash("password", serverConfig.saltRounds)
 
     USER = await models.User.create({
-      name: 'Gaby Mendez',
-      email: 'gaby@crate.com',
+      name: 'Crate User',
+      email: 'user@crate.com',
       password: passwordHashed,
       role: "USER"
     });
 
     await models.User.create({
-      name: 'Kwibe Merci',
-      email: 'kwibe@crate.com',
+      name: 'Crate Admin',
+      email: 'admin@crate.com',
       password: passwordHashed,
       role: "ADMIN"
     });
