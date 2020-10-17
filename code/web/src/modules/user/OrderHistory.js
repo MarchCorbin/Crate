@@ -11,49 +11,16 @@ import { getOrderHistory } from './api/actions.js'
 
 // Component
 class OrderHistory extends Component {
-	constructor() {
-		super()
-		this.state = {
-			orders: {
-				"data": {
-					"ordersByUser": [
-						{
-							"shippingDate": "1605461630039",
-							"products": [
-								{
-									"name": "T-Shirt for Women - Grey",
-									"image": "/images/stock/t-shirt-female-2.jpg"
-								},
-								{
-									"name": "T-Shirt for Men - Grey",
-									"image": "/images/stock/t-shirt-male-2.jpg"
-								}
-							]
-						},
-						{
-							"shippingDate": "1605461630039",
-							"products": [
-								{
-									"name": "Belt for Men",
-									"image": "/images/stock/belt-male.jpg"
-								}
-							]
-						}
-					]
-				}
-			}
-		}
+	constructor(props) {
+		super(props)
 	}
 
 	componentDidMount = () => {
-		// this.props.getOrderHistory()
-		// 	.then(response => {
-		// 		console.log(response)
-		// 	})
+		this.props.getOrderHistory()
 	}
 
 	createOrderList = () => {
-		return this.state.orders.data.ordersByUser.map((order, i) => {
+		return this.props.user.orders.map((order, i) => {
 			return (<Order order={order} key={i}/>)
 		})
 	}
@@ -80,10 +47,10 @@ class OrderHistory extends Component {
 // Component State
 function orderHistoryState(state) {
 	return {
-		// user: state.user
+		user: state.user
 	}
 }
 
-export default connect(null, { 
+export default connect(orderHistoryState, { 
 	getOrderHistory
  })(OrderHistory)
