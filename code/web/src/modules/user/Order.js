@@ -5,6 +5,7 @@ import { H5 } from '../../ui/typography'
 
 // Component
 const Order = (props) => {
+	// Get product by ID function 
 return(	
 	<div style={{display:'flex', flexFlow:'column', border: '1px solid green'}}>
 			<H5 style={{margin:'.3em'}}>this.props.month</H5>
