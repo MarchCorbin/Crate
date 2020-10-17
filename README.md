@@ -42,6 +42,13 @@ Configuring your $PATH variable
 - In this directory, run `npm install` to install packages
 - From this same directory, run `npm start`. You can now view the application from your browser at http://localhost:3000/
 
+### Preview
+- Added Feature: User can update profile details
+<img src="http://g.recordit.co/mYq8wrP1QA.gif" alt="User updating their description on profile details" height=auto width=65%/>
+
+- Added Feature: User can update profile picture
+<img src="http://g.recordit.co/X94HaRxSq6.gif" alt="User updating their picture on profile details" height=auto width=65%/>
+
 ### GraphQL Schema
 ![graphql_schema](https://user-images.githubusercontent.com/62727545/95487041-cf571300-0961-11eb-9728-bf0bf1b76931.png)
 ### Database Schema

@@ -7,7 +7,6 @@ import { H5 } from '../../ui/typography'
 
 // App Imports
 import { routeImage } from '../../setup/routes'
-import { APP_URL_API } from '../../setup/config/env'
 
 // Component
 const Order = ({ order }) => {
