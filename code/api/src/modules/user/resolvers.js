@@ -60,7 +60,11 @@ export async function login(parentValue, { email, password }) {
 
 // Get by ID
 export async function getById(parentValue, { id }) {
-  return await models.User.findOne({ where: { id } })
+  let user = await models.User.findOne({ where: { id } })
+  if (!user){
+    throw Error('The user does not exist')
+  }
+  return user
 }
 
 // Get all
