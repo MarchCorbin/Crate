@@ -1,3 +1,8 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 ## Crate
 
 Brownfield project for Turing students to collaborate on as a full-stack team in Mod4. This team was assigned the _Improving UX and Community [Track](https://mod4.turing.io/projects/crate/crate_project_tracks.html)_
@@ -42,7 +47,24 @@ Configuring your $PATH variable
 - In this directory, run `npm install` to install packages
 - From this same directory, run `npm start`. You can now view the application from your browser at http://localhost:3000/
 
+### Preview
+- Added Feature: User can update profile details
+<img src="http://g.recordit.co/mYq8wrP1QA.gif" alt="User updating their description on profile details" height=auto width=65%/>
+
+- Added Feature: User can update profile picture
+<img src="http://g.recordit.co/X94HaRxSq6.gif" alt="User updating their picture on profile details" height=auto width=65%/>
+
 ### GraphQL Schema
 ![graphql_schema](https://user-images.githubusercontent.com/62727545/95487041-cf571300-0961-11eb-9728-bf0bf1b76931.png)
 ### Database Schema
 ![Database Schema](https://user-images.githubusercontent.com/46441816/96352562-3de25200-1081-11eb-945e-f583ed311ffd.png)
+
+[contributors-shield]: https://img.shields.io/github/contributors/gabichuelas/crate.svg?style=flat-square
+[contributors-url]: https://github.com/gabichuelas/crate/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/gabichuelas/crate.svg?style=flat-square
+[forks-url]: https://github.com/gabichuelas/crate/network/members
+[stars-shield]: https://img.shields.io/github/stars/gabichuelas/crate.svg?style=flat-square
+[stars-url]: https://github.com/gabichuelas/crate/stargazers
+[issues-shield]: https://img.shields.io/github/issues/gabichuelas/crate.svg?style=flat-square
+[issues-url]: https://github.com/gabichuelas/crate/issues
+
