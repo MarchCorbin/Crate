@@ -22,6 +22,8 @@ Crate is a platform, similar to Stitch Fix, that allows users to setup monthly s
 **Back End**
 - GraphQL
 - Sequelize
+- Express
+- Node.js
 
 ### Prerequisites and Setup Instructions
 **Prerequisites**
@@ -58,7 +60,8 @@ Configuring your $PATH variable
 <img src="http://g.recordit.co/X94HaRxSq6.gif" alt="User updating their picture on profile details" height=auto width=65%/>
 
 ### GraphQL Schema
-![graphql_schema](https://user-images.githubusercontent.com/62727545/95487041-cf571300-0961-11eb-9728-bf0bf1b76931.png)
+![graphql_schema_2](https://user-images.githubusercontent.com/62727545/96355304-21a8da00-10ae-11eb-86d8-09edd47db0b0.png)
+
 ### Database Schema
 ![Database Schema](https://user-images.githubusercontent.com/46441816/96352562-3de25200-1081-11eb-945e-f583ed311ffd.png)
 
@@ -85,4 +88,3 @@ Configuring your $PATH variable
 [stars-url]: https://github.com/gabichuelas/crate/stargazers
 [issues-shield]: https://img.shields.io/github/issues/gabichuelas/crate.svg?style=flat-square
 [issues-url]: https://github.com/gabichuelas/crate/issues
-
