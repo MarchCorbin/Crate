@@ -131,6 +131,7 @@ export function editDetails(newDetails) {
 	}
 }
 
+// Get user details
 export function getDetails(user) {
   return dispatch => {
      dispatch({
@@ -138,4 +139,15 @@ export function getDetails(user) {
        user
       })
   }
+}
+
+// Get user orders
+export function getOrderHistory() {
+	return dispatch => {
+		return axios.post(routeApi, query({
+			operation: 'ordersByUser',
+			fields: ['shippingDate']
+		}
+		))
+	}
 }

@@ -13,6 +13,7 @@ import { grey } from '../../ui/common/colors'
 
 // App Imports
 import ProfileDetails from './ProfileDetails'
+import OrderHistory from './OrderHistory'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
@@ -41,8 +42,10 @@ const Profile = (props) => (
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>
     </Grid>
-
+    <div style={{display:'flex', justifyContent: 'space-evenly'}}>
 		<ProfileDetails />
+		<OrderHistory />
+    </div>
   </div>
 )
 
